@@ -6,11 +6,11 @@ Main();
 
 static void Main() {
 
-    string Version = "Alpha 00.00.54";
-    string codeName = "Syphon aka CSIFEngine";
+    string Version = "00.00.54 Alpha";
+    string codeName = "Syphon";
     string gameName = "Netrun";
 
-    Console.WriteLine("C# Interactive Fiction Engine <Codename: " + codeName + ">  \nVersion: " + Version + "\n");
+    Console.WriteLine("CSIFEngine V." + Version + "\nC# Interactive Fiction Engine <Codename: " + codeName + ">  \n");
     Console.WriteLine("Developed by Chopping Block Studios");
     Console.WriteLine("Lead Developer: J.S. Brown ( aka Old Jobobo )");
 
