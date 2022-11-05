@@ -13,6 +13,7 @@ namespace CSIFEngine
         {
              
             //Initial Rooms and Things
+
             Room apartment = new Room();
             apartment.Name = "Your Apartment";
             apartment.Description = "            You are in a dingy apartment. Rain spatters the window which frames a view of the city, plastered with \n" +
@@ -38,6 +39,7 @@ namespace CSIFEngine
             arGlasses.Name = "AR-Glasses";
             arGlasses.Description = "          A pair AR-Glasses, yours to be exact.  They look like a regular pair of glasses but with slightly\n" +
                "     chunky frames to hold the internal components.";
+            arGlasses.RDesc = "You see your AR-Glasses here.";
             apartment.AddThing(arGlasses);
 
             apartment.N = aptDoor;
@@ -55,6 +57,8 @@ namespace CSIFEngine
             keycard.Description = "         You see a plastic keycard, slightly thick as if it contains a small amount of \n" +
                                   "    electronics within it's tiny form.";
             keycard.ID = 1;
+            keycard.RDesc = "You see a keycard here.";
+
             apartment.AddThing(keycard);
 
 
@@ -104,19 +108,18 @@ namespace CSIFEngine
 
 
             //Initialize Player and GameManager
-            Player player = new Player(rooms, apartment);
-            GameManager gameManager = new GameManager(rooms, player);
+            Player player = new Player(rooms, apartment);  //Create the player, pass list of rooms and starting location
+            GameManager gameManager = new GameManager(rooms, player);  //Create the GameManager, pass the list of rooms and the player
 
+
+            player.Look("room"); //Look at the start location on start.
 
             //Initiate Main Game Loop
-            
-            player.Look("room");
-
             while (Game.GameOver == false)
             {
-                string[] commands = gameManager.Prompt();
+                string[] commands = gameManager.Prompt(); //Display prompt and get user input
 
-                gameManager.Parse(commands);
+                gameManager.Parse(commands); //Parse the users commands
             }
         }
 

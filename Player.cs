@@ -32,8 +32,12 @@ namespace CSIFEngine
                 if (Location.Things != null)
                 {
                     Console.WriteLine(Location.Name + "\n");
-                    Console.WriteLine(Location.Description + "\n");
-                    Console.Write("Things: ");
+                    Console.Write(Location.Description);
+                    foreach (Thing thing in Location.Things)
+                    {
+                        Console.Write(" " + thing.RDesc);
+                    }
+                    Console.Write("\n\nThings: ");
                     foreach (Thing thing in Location.Things)
                     {
                         Console.Write(" [" + thing.Name + "] ");
@@ -375,12 +379,15 @@ namespace CSIFEngine
         {
             foreach (Thing thing in Location.Things)
             {
-                if (thing.Name.ToLower() == get)
+                if (get.Length >= 3)
                 {
-                    Inventory.Add(thing);
-                    Location.Things.Remove(thing);
-                    Console.WriteLine("You pick up the " + thing.Name);
-                    break;
+                    if (thing.Name.ToLower() == get || thing.Name.StartsWith(get, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Inventory.Add(thing);
+                        Location.Things.Remove(thing);
+                        Console.WriteLine("You pick up the " + thing.Name);
+                        break;
+                    }
                 }
             }
 

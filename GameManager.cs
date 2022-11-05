@@ -136,6 +136,22 @@ namespace CSIFEngine
             {
                 Game.GameOver = true;
             }
+            else
+            {
+                foreach (Thing item in player.Inventory)
+                {
+                    if (item != null )
+                    {
+                        foreach (string act in item.Actions)
+                        {
+                            if (act == command.ToLower())
+                            {
+                                //item.Parse(command, arg1.ToLower());
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
