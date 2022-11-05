@@ -6,8 +6,8 @@ Main();
 
 static void Main() {
 
-    string Version = "Alpha 00.00.42";
-    string codeName = "Syphon aka CSIF-Engine";
+    string Version = "Alpha 00.00.54";
+    string codeName = "Syphon aka CSIFEngine";
     string gameName = "Netrun";
 
     Console.WriteLine("C# Interactive Fiction Engine <Codename: " + codeName + ">  \nVersion: " + Version + "\n");
