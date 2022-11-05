@@ -8,7 +8,7 @@ namespace CSIFEngine
 {
     public class Exit : Thing
     {
-  
+   
         private string dir;
         private int toroomid;
         private int exitto;

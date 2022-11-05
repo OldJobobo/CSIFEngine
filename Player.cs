@@ -23,7 +23,7 @@ namespace CSIFEngine
             Location = loc;
             Inventory = new List<Thing>();
         }
-
+         
         public void Look(string lookAt)
         {
 

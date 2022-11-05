@@ -25,7 +25,7 @@ namespace CSIFEngine
         {
             Lockable = lockable;
             Locked = locked;
-
+             
             Contents = contents;    
         }
 

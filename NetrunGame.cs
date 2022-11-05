@@ -11,7 +11,7 @@ namespace CSIFEngine
     {
         public static void Start(List<Room> rooms)
         {
-
+             
             //Initial Rooms and Things
             Room apartment = new Room();
             apartment.Name = "Your Apartment";

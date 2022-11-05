@@ -15,7 +15,7 @@ namespace CSIFEngine
         private int id;
         private string name;
         private string description;
-
+         
         private Exit north;
         private Exit south;
         private Exit west;
