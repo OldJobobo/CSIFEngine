@@ -85,7 +85,7 @@ namespace CSIFEngine
                 if (words.Length == 2)
                 {
                     string arg1 = words[1];
-
+                    
                     player.Get(arg1.ToLower());
                     player.PlayerTurns++;
                 }

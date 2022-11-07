@@ -66,6 +66,7 @@ namespace CSIFEngine
             Container locker = new Container(new List<Thing> { arGlasses, keycard }, false, false);
             locker.Name = "Locker";
             locker.Description = "A personal locker were you keep some of your things.";
+            locker.Fixed = true;
             apartment.AddThing(locker);
 
 

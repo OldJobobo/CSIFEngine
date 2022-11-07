@@ -401,10 +401,17 @@ namespace CSIFEngine
                 {
                     if (thing.Name.ToLower() == get || thing.Name.StartsWith(get, StringComparison.CurrentCultureIgnoreCase))
                     {
-                        Inventory.Add(thing);
-                        Location.Things.Remove(thing);
-                        Console.WriteLine("You pick up the " + thing.Name);
-                        break;
+                        if (!thing.Fixed)
+                        {
+                            Inventory.Add(thing);
+                            Location.Things.Remove(thing);
+                            Console.WriteLine("You pick up the " + thing.Name);
+                            break;
+                        }
+                        else if (thing.Fixed)
+                        {
+                            Console.WriteLine("You can not take that.");
+                        }
                     }
                 }
             }
@@ -424,10 +431,17 @@ namespace CSIFEngine
                         foreach (Thing content in container1.Contents)
                         {
                             if (content.Name.ToLower() == get)
-                            Inventory.Add(content);
-                            container1.Contents.Remove(content);
-                            Console.WriteLine("You take the " + content.Name + " from the " + container1.Name);
-                            break;
+                                if (!content.Fixed)
+                                {
+                                    Inventory.Add(content);
+                                    container1.Contents.Remove(content);
+                                    Console.WriteLine("You take the " + content.Name + " from the " + container1.Name);
+                                    break;
+                                }
+                                else if (content.Fixed)
+                                {
+                                    Console.WriteLine("You can not take that.");
+                                }
                         }
                     }
                 }
