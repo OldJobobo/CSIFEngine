@@ -14,12 +14,14 @@ namespace CSIFEngine
              
             //Initial Rooms and Things
 
+            //Starting location Players Apartment
             Room apartment = new Room();
             apartment.Name = "Your Apartment";
             apartment.Description = "            You are in a dingy apartment. Rain spatters the window which frames a view of the city, plastered with \n" +
                                     "    neon signs and large shifting LED billboards.";
             apartment.ID = 1;
 
+            //Apartment Door Exit
             Exit aptDoor = new Exit
                 (
                     id: 1,
@@ -34,6 +36,8 @@ namespace CSIFEngine
                 );
             aptDoor.aliases = new List<string> { "door", "aptdoor" };
             aptDoor.ODesc = "You hold the " + aptDoor.Key + " up to the small touchscreen to the left of the door and it slides open.";
+            
+            //AR-Glasses Item
             Thing arGlasses = new Thing();
             arGlasses.ID = 2;
             arGlasses.Name = "AR-Glasses";
@@ -41,6 +45,8 @@ namespace CSIFEngine
                "     chunky frames to hold the internal components.";
             arGlasses.RDesc = "You see your AR-Glasses here.";
             apartment.AddThing(arGlasses);
+
+
 
             apartment.N = aptDoor;
             apartment.AddExit("N");
