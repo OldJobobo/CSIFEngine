@@ -51,7 +51,7 @@ namespace CSIFEngine
             arGlasses.Description = "          A pair AR-Glasses, yours to be exact.  They look like a regular pair of glasses but with slightly\n" +
                                     "     chunky frames to hold the internal components.";
             arGlasses.RDesc = "You see your AR-Glasses here.";
-            apartment.AddThing(arGlasses);
+            //apartment.AddThing(arGlasses);
 
             //Keycard Item
             Thing keycard = new Thing();
@@ -60,7 +60,13 @@ namespace CSIFEngine
                                   "    electronics within it's tiny form.";
             keycard.ID = 1;
             keycard.RDesc = "You see a keycard here.";
-            apartment.AddThing(keycard);
+            //apartment.AddThing(keycard);
+
+            //Locker Container
+            Container locker = new Container(new List<Thing> { arGlasses, keycard }, false, false);
+            locker.Name = "Locker";
+            locker.Description = "A personal locker were you keep some of your things.";
+            apartment.AddThing(locker);
 
 
             //Add Apartment to Roomlist

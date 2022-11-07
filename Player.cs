@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -79,9 +80,26 @@ namespace CSIFEngine
                         if (thing.Name.ToLower() == lookAt)
                         {
                             inRoom = true;
-                            
-                            Console.WriteLine(thing.Description + "\n");
 
+                            Console.WriteLine(thing.Description + "\n");
+                            if (thing.GetType() == typeof(Container))
+                            {
+                                Container container = (Container)thing;
+                                // Console.WriteLine("is Container");
+                                if (container != null)
+                                    if (container.isOpen)
+                                    {
+                                        if (container.Contents != null)
+                                        {
+                                            Console.Write("Contents: ");
+                                            foreach (Thing content in container.Contents)
+                                            {
+                                                Console.Write(" [" + content.Name + "] ");
+                                            }
+                                            Console.Write("\n");
+                                        }
+                                    }
+                            }
                         }
                     }
                 }
@@ -393,17 +411,43 @@ namespace CSIFEngine
 
         }
 
+        public void Get(string get, string container)
+        {
+            foreach (Thing thing in Location.Things)
+            {
+                if (get.Length >= 3)
+                {
+                 
+                    if (thing.Name.ToLower() == container || thing.Name.StartsWith(get, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Container container1 = (Container)thing;
+                        foreach (Thing content in container1.Contents)
+                        {
+                            if (content.Name.ToLower() == get)
+                            Inventory.Add(content);
+                            container1.Contents.Remove(content);
+                            Console.WriteLine("You take the " + content.Name + " from the " + container1.Name);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
 
         public void Drop(string drop)
         {
             foreach (Thing thing in Inventory)
             {
-                if (thing.Name.ToLower() == drop || thing.Name.StartsWith(drop, StringComparison.CurrentCultureIgnoreCase))
+                if (drop.Length >= 3)
                 {
-                    Location.Things.Add(thing);
-                    Inventory.Remove(thing);
-                    Console.WriteLine("You drop the " + thing.Name);
-                    break;
+                    if (thing.Name.ToLower() == drop || thing.Name.StartsWith(drop, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Location.Things.Add(thing);
+                        Inventory.Remove(thing);
+                        Console.WriteLine("You drop the " + thing.Name);
+                        break;
+                    }
                 }
                 
                
@@ -505,6 +549,31 @@ namespace CSIFEngine
 
 
         } //end Unlock method
+
+        public void Open(string container)
+        {
+            foreach (Thing thing in this.Location.Things)
+            {
+                if (thing.Name.ToLower() == container)
+                {
+                    Container container1 = (Container)thing;
+                    container1.Open();
+                }
+            }
+            //container.Open();
+        }
+        public void Close(string container)
+        {
+
+            foreach (Thing thing in this.Location.Things)
+            {
+                if (thing.Name.ToLower() == container)
+                {
+                    Container container1 = (Container)thing;
+                    container1.Close();
+                }
+            }
+        }
 
         public void Info()
         {

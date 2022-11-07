@@ -41,7 +41,9 @@ namespace CSIFEngine
         public void Parse(string[] words)
         {
             string command = words[0];
-            string arg1 = "null";
+            //string arg1 = "null";
+            //string arg2 = "null";
+            //string arg3 = "null";
             if (words.Length == 1)
             {
                 if (command.ToLower() == "n" || command.ToLower() == "s" || command.ToLower() == "e" || command.ToLower() == "w" || 
@@ -72,7 +74,7 @@ namespace CSIFEngine
             {
                 if (words.Length > 1)
                 {
-                    arg1 = words[1];
+                    string arg1 = words[1];
 
                     player.Go(arg1.ToLower());
                     player.PlayerTurns++;
@@ -80,19 +82,39 @@ namespace CSIFEngine
             }
             else if (command.ToLower() == "get")
             {
-                if (words.Length > 1)
+                if (words.Length == 2)
                 {
-                    arg1 = words[1];
+                    string arg1 = words[1];
 
                     player.Get(arg1.ToLower());
                     player.PlayerTurns++;
+                }
+                else if (words.Length > 2)
+                {
+                    if (words.Length == 3)
+                    {
+                        string arg1 = words[1];
+                        string arg2 = words[2];
+
+                        player.Get(arg1.ToLower(), arg2);
+                        player.PlayerTurns++;
+                    }
+                    else if (words.Length == 4)
+                    {
+                        string arg1 = words[1];
+                        string arg2 = words[2];
+                        string arg3 = words[3];
+
+                        player.Get(arg1.ToLower(), arg3);
+                        player.PlayerTurns++;
+                    }
                 }
             }
             else if (command.ToLower() == "drop")
             {
                 if (words.Length > 1)
                 {
-                    arg1 = words[1];
+                    string arg1 = words[1];
 
                     player.Drop(arg1.ToLower());
                     player.PlayerTurns++;
@@ -107,7 +129,7 @@ namespace CSIFEngine
             {
                 if (words.Length > 1)
                 {
-                    arg1 = words[1];
+                    string arg1 = words[1];
 
                     player.Lock(arg1.ToLower());
                     player.PlayerTurns++;
@@ -118,12 +140,22 @@ namespace CSIFEngine
 
                 if (words.Length > 1)
                 {
-                    arg1 = words[1];
+                    string arg1 = words[1];
 
                     player.Unlock(arg1.ToLower());
                     player.PlayerTurns++;
                 }
        
+            }
+            else if (command.ToLower() == "open")
+            {
+                if (words.Length > 1)
+                {
+                    string arg1 = words[1];
+
+                    player.Open(arg1.ToLower());
+                    player.PlayerTurns++;
+                }
             }
 
             else if (command.ToLower() == "info")
