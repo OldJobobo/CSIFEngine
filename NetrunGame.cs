@@ -36,38 +36,40 @@ namespace CSIFEngine
                 );
             aptDoor.aliases = new List<string> { "door", "aptdoor" };
             aptDoor.ODesc = "You hold the " + aptDoor.Key + " up to the small touchscreen to the left of the door and it slides open.";
-            
+            apartment.N = aptDoor;
+            apartment.AddExit("N");
+
+            //Batheroom Door in Apt
+            Exit bathDoor = new(4, "Bathroom Door", "The door to your apartment bathroom.", "e", 3, 3);
+            apartment.E = bathDoor;
+            apartment.AddExit("E");
+
             //AR-Glasses Item
             Thing arGlasses = new Thing();
             arGlasses.ID = 2;
             arGlasses.Name = "AR-Glasses";
             arGlasses.Description = "          A pair AR-Glasses, yours to be exact.  They look like a regular pair of glasses but with slightly\n" +
-               "     chunky frames to hold the internal components.";
+                                    "     chunky frames to hold the internal components.";
             arGlasses.RDesc = "You see your AR-Glasses here.";
             apartment.AddThing(arGlasses);
 
-
-
-            apartment.N = aptDoor;
-            apartment.AddExit("N");
-
-            Exit bathDoor = new(4, "Bathroom Door", "The door to your apartment bathroom.", "e", 3, 3);
-            apartment.E = bathDoor;
-            apartment.AddExit("E");
-
-            rooms.Add(apartment);
-
-
-            Thing keycard = new Thing(); 
+            //Keycard Item
+            Thing keycard = new Thing();
             keycard.Name = "Keycard";
             keycard.Description = "         You see a plastic keycard, slightly thick as if it contains a small amount of \n" +
                                   "    electronics within it's tiny form.";
             keycard.ID = 1;
             keycard.RDesc = "You see a keycard here.";
-
             apartment.AddThing(keycard);
 
 
+            //Add Apartment to Roomlist
+            rooms.Add(apartment);
+
+
+     
+
+            //Hallway Room
             Room hallway = new Room();
             hallway.Name = "Apartment Building Hallway";
             hallway.Description =    "          The hallway is long and closterphobic. The paint is cracked and pealing in places as the flourecent lights \n" +
@@ -80,6 +82,7 @@ namespace CSIFEngine
             hallway.W = hallElevator;
             hallway.AddExit("W");
 
+            //Add Hallway to roomslist
             rooms.Add(hallway);
 
 
