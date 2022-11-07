@@ -113,14 +113,27 @@ namespace CSIFEngine
             aptLobby.Name = "Apartment Building Lobby";
             aptLobby.Description = "          The lobby was obviously elegant and stylish at one time but now its clear that it has seen better days.  Dust\n" +
                                    "    and haze are illuminated by the eerie glow of magenta and yellow light from the neon and digital signs visible from\n" +
-                                   "    the lobby windows looking out onto the street outside.";
+                                   "    the lobby windows which looking out onto the street outside.";
             aptLobby.ID = 4;
             Exit lobbyElevator = new(5, "Lobby Elevator", "    An aging elevator to the upper floors of the Building.", "W", 2, 6);
             aptLobby.W = lobbyElevator;
             aptLobby.AddExit("W");
+            Exit lobbyExit = new(4, "Exit to Slicer Ave", "     Aging but elegant and elaberatly designed is the building's entrance, which leads to Slicer Ave.", "E", 5, 1);
+            aptLobby.E = lobbyExit;
+            aptLobby.AddExit("E");
 
             rooms.Add(aptLobby);
 
+            Room slicerAve = new Room();
+            slicerAve.Name = "Slicer Ave";
+            slicerAve.Description = "          A few random pedestrians wonder by but pretty deserted compared to other areas of the City.  Your\n" +
+                                    "    apartment building looms over you to the west.";
+            slicerAve.ID = 5;
+            Exit aptBuilding = new(1, "Apartment Building", "     You see the front entrance to your apartment building.", "W", 4, 4 );
+            slicerAve.W = aptBuilding;
+            slicerAve.AddExit("W");
+
+            rooms.Add(slicerAve);
 
 
 

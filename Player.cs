@@ -237,7 +237,7 @@ namespace CSIFEngine
                         Container container1 = (Container)thing;
                         foreach (Thing content in container1.Contents)
                         {
-                            if (content.Name.ToLower() == get)
+                            if (content.Name.ToLower() == get || content.Name.StartsWith(get, StringComparison.CurrentCultureIgnoreCase))
                                 if (!content.Fixed)
                                 {
                                     Inventory.Add(content);
@@ -248,6 +248,7 @@ namespace CSIFEngine
                                 else if (content.Fixed)
                                 {
                                     Console.WriteLine("You can not take that.");
+                                    break;
                                 }
                         }
                     }
