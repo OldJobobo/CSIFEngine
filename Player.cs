@@ -125,237 +125,44 @@ namespace CSIFEngine
 
             if (Dir == "n" || Dir == "north")
             {
-
                 Move("north");
-
-               /* if (this.Location.CheckExit("N"))
-                {
-                    if (!this.Location.N.Locked)
-                    {
-                        int goTo = this.Location.N.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the north.");
-                                    this.Location = null;
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-
-                }
-                else { Console.WriteLine("There is no exit to the north."); }
-               */
-
             }
             else if (Dir == "s" || Dir == "south")
             {
                 Move("south");
-             /*   if (this.Location.CheckExit("S"))
-                {
-                    if (!this.Location.S.Locked)
-                    {
-                        int goTo = this.Location.S.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the south.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-
-                else { Console.WriteLine("There is no exit to the south."); }
-             */
-
             }
             else if (Dir == "w" || Dir == "west")
             {
-                if (this.Location.CheckExit("W"))
-                {
-                    if (!this.Location.W.Locked)
-                    {
-                        int goTo = this.Location.W.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the west.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-
-                else { Console.WriteLine("There is no exit to the west."); }
+                Move("west");
             }
             else if (Dir == "e" || Dir == "east")
             {
-                if (this.Location.CheckExit("E"))
-                {
-                    if (!this.Location.E.Locked)
-                    {
-                        int goTo = this.Location.E.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the east.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-                else { Console.WriteLine("There is no exit to the east."); }
+                Move("east");
             }
             else if (Dir == "nw" || Dir == "northwest")
             {
-                if (this.Location.CheckExit("NW"))
-                {
-                    if (!this.Location.NW.Locked)
-                    {
-                        int goTo = this.Location.NW.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the northwest.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-                else { Console.WriteLine("There is no exit to the northwest."); }
-
+                Move("northwest");
             }
             else if (Dir == "ne" || Dir == "northeast")
             {
-                if (Location.CheckExit("NE"))
-                {
-                    if (!this.Location.NE.Locked)
-                    {
-                        int goTo = this.Location.NE.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the northeast.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-                else { Console.WriteLine("There is no exit to the northeast."); }
+                Move("northeast");
             }
             else if (Dir == "sw" || Dir == "southwest")
             {
-
-                if (this.Location.CheckExit("SW"))
-                {
-                    if (!this.Location.S.Locked)
-                    {
-                        int goTo = this.Location.SW.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the southwest.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-                else { Console.WriteLine("There is no exit to the southwest."); }
+                Move("southwest");
             }
             else if (Dir == "se" || Dir == "southeast")
             {
-
-                if (this.Location.CheckExit("SE"))
-                {
-                    if (!this.Location.S.Locked)
-                    {
-                        int goTo = this.Location.SE.toRoomID;
-                        if (goTo != 0)
-                        {
-                            foreach (Room room in roomList)
-                            {
-                                if (room.ID == goTo)
-                                {
-                                    gotoRoom = room;
-                                    Console.WriteLine("You go to the southeast.");
-                                    this.Location = gotoRoom;
-                                    break;
-                                }
-                            }
-
-                            Look("room");
-                        }
-                    }
-                    else { Console.WriteLine("The door is locked."); }
-                }
-                else { Console.WriteLine("There is no exit to the southeast."); }
+                Move("southeast");
             }
-
+            else if (Dir == "u" || Dir == "up")
+            {
+                Move("up");
+            }
+            else if (Dir == "d" || Dir == "down")
+            {
+                Move("down");
+            }
         }
 
 
@@ -525,7 +332,8 @@ namespace CSIFEngine
                 foreach (Thing inv in Inventory)
                 {
                     if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
-                       dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se")
+                       dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
+                       dir.ToLower() == "u" || dir.ToLower() == "d")
                     {
                         Exit x = this.Location.GetExit(dir.ToLower());
                         int exitID = x.ExitID;
@@ -572,6 +380,7 @@ namespace CSIFEngine
                 {
                     Container container1 = (Container)thing;
                     container1.Open();
+                    Console.WriteLine(container1.ODesc);
                 }
             }
             //container.Open();

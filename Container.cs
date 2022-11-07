@@ -13,12 +13,14 @@ namespace CSIFEngine
         private bool isopen = false;
         private string oDesc;
         private string cDesc;
+        private string key;
 
         public bool Lockable { get { return lockable; } set { lockable = value; } }
         public bool Locked { get { return locked; } set { locked = value; } }
         public bool isOpen { get { return isopen; } set { isopen = value; } }
         public string ODesc { get { return oDesc; } set { oDesc = value; } }   
         public string CDesc { get { return cDesc; } set { cDesc = value; } }
+        public string Key { get { return key; } set { key = value; } }
 
 
         public List<Thing> Contents;
@@ -29,6 +31,14 @@ namespace CSIFEngine
             Locked = locked;
              
             Contents = contents;    
+        }
+        public Container(List<Thing> contents, bool lockable, bool locked, string key)
+        {
+            Lockable = lockable;
+            Locked = locked;
+
+            Contents = contents;
+            Key = key;
         }
 
         public void Open()

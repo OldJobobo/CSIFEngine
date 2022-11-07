@@ -24,6 +24,8 @@ namespace CSIFEngine
         private Exit southeast;
         private Exit northwest;
         private Exit northeast;
+        private Exit up;
+        private Exit down;
 
         public string Name { get { return name; } set { name = value; } }
         public string Description { get { return description; } set { description = value; } }
@@ -36,6 +38,9 @@ namespace CSIFEngine
         public Exit SE { get { return southeast; } set { southeast = value; } }  
         public Exit NW { get { return northwest; } set { northwest = value; } }    
         public Exit NE { get { return northeast; } set { northeast = value; } }
+        public Exit U { get { return up; } set { up = value; } }    
+        public Exit D { get { return down; } set { down = value; } }
+
 
         public List<Exit> ExitList { get; set; }
         public List<string> Exits { get; set; }
@@ -82,6 +87,14 @@ namespace CSIFEngine
             {
                 if (NE != null) { return true; } else { return false; }
             }
+            else if (Dir.ToLower() == "u" || Dir.ToLower() == "up")
+            {
+                if (U != null) { return true; } else { return false; }
+            }
+            else if (Dir.ToLower() == "d" || Dir.ToLower() == "down")
+            {
+                if (D != null) { return true; } else { return false; }
+            }
             else { return false; }
         }
 
@@ -106,6 +119,8 @@ namespace CSIFEngine
             else if (dir.ToLower() == "se" || dir.ToLower() == "southeast") { Exit x = this.SE; return x; }
             else if (dir.ToLower() == "nw" || dir.ToLower() == "northwest") { Exit x = this.NW; return x; }
             else if (dir.ToLower() == "ne" || dir.ToLower() == "northeast") { Exit x = this.SE; return x; }
+            else if (dir.ToLower() == "u" || dir.ToLower() == "up") { Exit x = this.U; return x; }
+            else if (dir.ToLower() == "d" || dir.ToLower() == "down") { Exit x = this.D; return x; }
             else { return null; }
 
           
