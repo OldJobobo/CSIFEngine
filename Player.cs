@@ -398,13 +398,15 @@ namespace CSIFEngine
         {
             foreach (Thing thing in Inventory)
             {
-                if (thing.Name.ToLower() == drop)
+                if (thing.Name.ToLower() == drop || thing.Name.StartsWith(drop, StringComparison.CurrentCultureIgnoreCase))
                 {
                     Location.Things.Add(thing);
                     Inventory.Remove(thing);
+                    Console.WriteLine("You drop the " + thing.Name);
+                    break;
                 }
-                Console.WriteLine("You drop the " + thing.Name);
-                break;
+                
+               
             }
         }
 
