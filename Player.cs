@@ -306,7 +306,8 @@ namespace CSIFEngine
                 foreach (Thing inv in Inventory)
                 {
                     Exit x = this.Location.GetExit(dir.ToLower());
-                    if (inv.Name.ToLower() == x.Key.ToLower())
+                    
+                    if (inv.Name.ToLower() == x.Key.ToLower() || inv.Name.StartsWith(x.Key, StringComparison.CurrentCultureIgnoreCase))
                     {
                         x.Locked = true;
                         Console.WriteLine("You lock the door with the " + inv.Name.ToLower() + ".");
