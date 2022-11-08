@@ -1,4 +1,4 @@
 *\*.dll\*
-/obj/
-/bin/
-/.vs/
+obj/
+bin/
+.vs/
