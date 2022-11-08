@@ -24,101 +24,104 @@ namespace CSIFEngine
             Location = loc;
             Inventory = new List<Thing>();
         }
-         
+
         public void Look(string lookAt)
         {
 
-            if (lookAt == "room" || lookAt == "here")
+            if (lookAt.Length >= 3)
             {
-                if (Location.Things != null)
+
+                if (lookAt == "room" || lookAt == "here")
                 {
-                    Console.WriteLine(Location.Name + "\n");
-                    Console.Write(Location.Description);
-                    foreach (Thing thing in Location.Things)
+                    if (Location.Things != null)
                     {
-                        Console.Write(" " + thing.RDesc);
-                    }
-                    Console.Write("\n\nThings: ");
-                    foreach (Thing thing in Location.Things)
-                    {
-                        Console.Write(" [" + thing.Name + "] ");
-                    }
-                }
-
-                Console.Write("\n");
-
-                Console.Write("Exits: ");
-                if (Location.Exits != null)
-                {
-                    foreach (string exit in Location.Exits)
-                    {
-                        Console.Write(" <" + exit + "> ");
-                    }
-                }
-                Console.Write("\n");
-
-            }
-            else
-            {
-                bool inInv = false;
-                bool inRoom = false;
-
-                foreach (Thing thing in this.Inventory)
-                {
-                    if (thing.Name.ToLower() == lookAt)
-                    {
-                        inInv = true;
-                      
-                        Console.WriteLine(thing.Description + "\n");
-
-                    }
-                }
-                if (!inInv)
-                {
-                    foreach (Thing thing in Location.Things)
-                    {
-                        if (thing.Name.ToLower() == lookAt)
+                        Console.WriteLine(Location.Name + "\n");
+                        Console.Write(Location.Description);
+                        foreach (Thing thing in Location.Things)
                         {
-                            inRoom = true;
-
-                            Console.WriteLine(thing.Description + "\n");
-                            if (thing.GetType() == typeof(Container))
-                            {
-                                Container container = (Container)thing;
-                                // Console.WriteLine("is Container");
-                                if (container != null)
-                                    if (container.isOpen)
-                                    {
-                                        if (container.Contents != null)
-                                        {
-                                            Console.Write("Contents: ");
-                                            foreach (Thing content in container.Contents)
-                                            {
-                                                Console.Write(" [" + content.Name + "] ");
-                                            }
-                                            Console.Write("\n");
-                                        }
-                                    }
-                            }
+                            Console.Write(" " + thing.RDesc);
+                        }
+                        Console.Write("\n\nThings: ");
+                        foreach (Thing thing in Location.Things)
+                        {
+                            Console.Write(" [" + thing.Name + "] ");
                         }
                     }
+
+                    Console.Write("\n");
+
+                    Console.Write("Exits: ");
+                    if (Location.Exits != null)
+                    {
+                        foreach (string exit in Location.Exits)
+                        {
+                            Console.Write(" <" + exit + "> ");
+                        }
+                    }
+                    Console.Write("\n");
+
                 }
                 else
                 {
-                    foreach (Exit exit in this.Location.ExitList)
+                    bool inInv = false;
+                    bool inRoom = false;
+
+                    foreach (Thing thing in this.Inventory)
                     {
-                        if (exit.Name.ToLower() == lookAt)
+                        if (thing.Name.ToLower() == lookAt || thing.Name.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
                         {
-                            Console.WriteLine(exit.Description + "\n");
+                            inInv = true;
+
+                            Console.WriteLine(thing.Description + "\n");
+
                         }
                     }
+                    if (!inInv)
+                    {
+                        foreach (Thing thing in Location.Things)
+                        {
+                            if (thing.Name.ToLower() == lookAt || thing.Name.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                inRoom = true;
+
+                                Console.WriteLine(thing.Description + "\n");
+                                if (thing.GetType() == typeof(Container))
+                                {
+                                    Container container = (Container)thing;
+                                   
+                                    if (container != null)
+                                        if (container.isOpen)
+                                        {
+                                            if (container.Contents != null)
+                                            {
+                                                Console.Write("Contents: ");
+                                                foreach (Thing content in container.Contents)
+                                                {
+                                                    Console.Write(" [" + content.Name + "] ");
+                                                }
+                                                Console.Write("\n");
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (Exit exit in this.Location.ExitList)
+                        {
+                            if (exit.Name.ToLower() == lookAt || exit.Name.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                Console.WriteLine(exit.Description + "\n");
+                            }
+                        }
+                    }
+
+
+
                 }
-
-
-
             }
         }
-
         public void Go(string Dir)
         {
             Room gotoRoom;
