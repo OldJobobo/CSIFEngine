@@ -416,10 +416,15 @@ namespace CSIFEngine
             {
                 if (thing.Name.ToLower() == item)
                 {
-                    this.Equipment.Add(thing);
-                    this.Inventory.Remove(thing);
-                    Console.WriteLine(thing.EDesc);
-                    break;
+                    if (thing.Wearable)
+                    {
+                        this.Equipment.Add(thing);
+                        this.Inventory.Remove(thing);
+                        Console.WriteLine(thing.EDesc);
+                        break;
+                    }
+                    else
+                        Console.WriteLine("You can't seem to find a way to wear that.");
                 }
             }
         }

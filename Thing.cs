@@ -14,6 +14,7 @@ namespace CSIFEngine
         private string rdesc; //The room description, inserted into the Description of the current location it is in.
         private string edesc; //The description displayed when this Item is equiped or wore with ('wear' or 'equip')
         private bool isFixed; //Is this fixed in place or movable.
+        private bool wearable; //Is this a wearable item? 
 
         
          
@@ -23,7 +24,7 @@ namespace CSIFEngine
         public string RDesc { get { return rdesc; } set { rdesc = value; } }
         public string EDesc { get { return edesc; } set { edesc = value; } }
         public bool Fixed { get { return isFixed; } set { isFixed = value; } }
-
+        public bool Wearable { get { return wearable; } set { wearable = value; } } 
 
         public List<string> Actions = new List<string>();
 
