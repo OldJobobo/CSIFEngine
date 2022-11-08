@@ -15,6 +15,7 @@ namespace CSIFEngine
         public int PlayerTurns;
 
         public List<Thing> Inventory;
+        public List<Thing> Equipment;
 
         private List<Room> roomList;
 
@@ -23,6 +24,7 @@ namespace CSIFEngine
             roomList = rooms;
             Location = loc;
             Inventory = new List<Thing>();
+            Equipment = new List<Thing>();
         }
 
         public void Look(string lookAt)
@@ -282,6 +284,12 @@ namespace CSIFEngine
 
         public void ShowInv()
         {
+            Console.Write("Equipped: ");
+            foreach (Thing thing in Equipment)
+            {
+                Console.Write(" " + thing.Name);
+            }
+            Console.Write("\n");
             Console.Write("Carrying: ");
             foreach (Thing thing in Inventory)
             {
@@ -398,6 +406,20 @@ namespace CSIFEngine
                 {
                     Container container1 = (Container)thing;
                     container1.Close();
+                }
+            }
+        }
+
+        public void Equip(string item)
+        {
+            foreach (Thing thing in this.Inventory)
+            {
+                if (thing.Name.ToLower() == item)
+                {
+                    this.Equipment.Add(thing);
+                    this.Inventory.Remove(thing);
+                    Console.WriteLine(thing.EDesc);
+                    break;
                 }
             }
         }

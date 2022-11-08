@@ -11,7 +11,7 @@ namespace CSIFEngine
    
         private string dir;
         private int toroomid;
-        private int exitto;
+        private int exitid;
         private bool lockable;
         private bool locked;
         private string key;
@@ -21,7 +21,7 @@ namespace CSIFEngine
 
         public string Dir { get { return dir; } set { dir = value; } }
         public int toRoomID { get { return toroomid; } set { toroomid = value; } }
-        public int ExitID { get { return exitto; } set { exitto = value; } }    
+        public int ExitID { get { return exitid; } set { exitid = value; } }    
         public bool Lockable { get { return lockable; } set { lockable = value; } }
         public bool Locked { get { return locked; } set { locked = value; } }   
         public string Key { get { return key; } set { key = value; } }

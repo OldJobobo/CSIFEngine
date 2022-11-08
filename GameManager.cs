@@ -157,7 +157,16 @@ namespace CSIFEngine
                     player.PlayerTurns++;
                 }
             }
+            else if (command.ToLower() == "wear" || command.ToLower() == "equip")
+            {
+                if (words.Length > 1)
+                {
+                    string arg1 = words[1];
 
+                    player.Equip(arg1.ToLower());
+                    player.PlayerTurns++;
+                }
+            }
             else if (command.ToLower() == "info")
             {
                 player.Info();

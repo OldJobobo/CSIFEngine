@@ -12,14 +12,16 @@ namespace CSIFEngine
         private string name; // Name
         private string description;   //the look at description of Thing
         private string rdesc; //The room description, inserted into the Description of the current location it is in.
-        private bool isFixed;
+        private string edesc; //The description displayed when this Item is equiped or wore with ('wear' or 'equip')
+        private bool isFixed; //Is this fixed in place or movable.
 
         
          
         public string Name { get { return name; } set { name = value; } }
         public string Description { get { return description; } set { description = value; } }
         public int ID { get { return id; } set { id = value; } }
-        public string RDesc { get { return rdesc; } set { rdesc = value; } }    
+        public string RDesc { get { return rdesc; } set { rdesc = value; } }
+        public string EDesc { get { return edesc; } set { edesc = value; } }
         public bool Fixed { get { return isFixed; } set { isFixed = value; } }
 
 
