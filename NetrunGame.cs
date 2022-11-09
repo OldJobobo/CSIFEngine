@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+/*
+ * This is the main Demo Game for CSIFEngine.  
+ */
 namespace CSIFEngine
 {
     public static class NetrunGame
@@ -143,6 +145,7 @@ namespace CSIFEngine
             Player player = new Player(rooms, apartment);  //Create the player, pass list of rooms and starting location
             GameManager gameManager = new GameManager(rooms, player);  //Create the GameManager, pass the list of rooms and the player
 
+            //TODO: Code an example Intro Scene sequence.
 
             player.Look("room"); //Look at the start location on start.
 

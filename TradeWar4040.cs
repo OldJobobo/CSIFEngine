@@ -20,10 +20,15 @@ namespace CSIFEngine
             Player player = new Player(rooms, homeSector);  //Create the player, pass list of rooms and starting location
             GameManager gameManager = new GameManager(rooms, player);  //Create the GameManager, pass the list of rooms and the player
 
-            player.roomExitsDisplay = "Warps to Sector(s): ";
-            player.roomInvDisplay = "Planets: ";
+            player.roomExitsDisplay = "Warps to Sector(s): ";  //Customize how Exits are displayed
+            player.roomInvDisplay = "Planets: "; //Change Things to Planets
 
-            player.Look("room"); //Look at the start location on start.
+            //TODO: Code an example Intro Scene sequence.
+
+            player.Look("room"); //Look at the start location to display something on start.
+
+            
+
 
             //Initiate Main Game Loop
             while (Game.GameOver == false)
