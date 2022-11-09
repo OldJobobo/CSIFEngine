@@ -1,5 +1,5 @@
 # CSIFEngine
- # Interactive Fiction Engine 
+ # C# Interactive Fiction Engine 
  
  A lightweight open-source Interactive Fiction (Game) Enigine.   While Inform 7+ dominates the space for IF engine frameworks, 
  and most others have died off or been abandoned, I feel that there is a need for something that is directly code based vs. the 
