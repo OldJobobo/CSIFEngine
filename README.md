@@ -5,12 +5,12 @@
  and most others have died off or been abandoned, I feel that there is a need for something that is directly code based vs. the 
  natural language scripting that Inform uses.  
  
- # Why C#?
+ ## Why C#?
  
  I am using C# because it is the language I have the most experience with and since Unity also uses C# it makes it easier
  to apply parts of this code for those working in Unity to do similar things.
 
-# Why are you making CSIFEngine?
+## Why are you making CSIFEngine?
 
 Formost this is a learning exercise to help me better understand OOP concepts and how they are applied in C#. Also, I grew up
 in the 80's playing many Text Adventures and I've dabbled at trying to code them off and on over the years so in a way this
