@@ -1,2 +1,2 @@
 # CSIFEngine
-C# Interactive Fiction Engine
+* # Interactive Fiction Engine *
