@@ -36,8 +36,10 @@ namespace CSIFEngine
                     locked: true,
                     key: "keycard"
                 );
+
             aptDoor.aliases = new List<string> { "door", "aptdoor" };
             aptDoor.ODesc = "You hold the " + aptDoor.Key + " up to the small touchscreen to the left of the door and it slides open.";
+            apartment.ExitList.Add(aptDoor);
             apartment.N = aptDoor;
             apartment.AddExit("N");
 
@@ -45,6 +47,7 @@ namespace CSIFEngine
             Exit bathDoor = new(4, "Bathroom Door", "The door to your apartment bathroom.", "e", 3, 3);
             apartment.E = bathDoor;
             apartment.AddExit("E");
+            apartment.ExitList.Add(bathDoor);
 
             //AR-Glasses Item
             Thing arGlasses = new Thing();
@@ -90,9 +93,11 @@ namespace CSIFEngine
             Exit aptDoor2 = new(2, "Apartment Door", "An average looking metal apartment door. The same one you come in and out of every day.", "S", 1, 1, true, true, "keycard");
             hallway.S = aptDoor2;
             hallway.AddExit("S");
+            hallway.ExitList.Add(aptDoor2);
             Exit hallElevator = new(6, "Hallway Elevator", "    An aging elevator to the first floor lobby of the Building.", "W", 4, 5);
             hallway.W = hallElevator;
             hallway.AddExit("W");
+            hallway.ExitList.Add(hallElevator);
 
             //Add Hallway to roomslist
             rooms.Add(hallway);
@@ -109,7 +114,7 @@ namespace CSIFEngine
             bathDoor2.Lockable = false;
             bathroom.W = bathDoor2;
             bathroom.AddExit("W");
-
+            bathroom.ExitList.Add(bathDoor2);
             rooms.Add(bathroom);
 
 
@@ -122,10 +127,11 @@ namespace CSIFEngine
             Exit lobbyElevator = new(5, "Lobby Elevator", "    An aging elevator to the upper floors of the Building.", "W", 2, 6);
             aptLobby.W = lobbyElevator;
             aptLobby.AddExit("W");
+            aptLobby.ExitList.Add(lobbyElevator);
             Exit lobbyExit = new(4, "Exit to Slicer Ave", "     Aging but elegant and elaberatly designed is the building's entrance, which leads to Slicer Ave.", "E", 5, 1);
             aptLobby.E = lobbyExit;
             aptLobby.AddExit("E");
-
+            aptLobby.ExitList.Add(lobbyExit);
             rooms.Add(aptLobby);
 
             Room slicerAve = new Room();
@@ -136,7 +142,7 @@ namespace CSIFEngine
             Exit aptBuilding = new(1, "Apartment Building", "     You see the front entrance to your apartment building.", "W", 4, 4 );
             slicerAve.W = aptBuilding;
             slicerAve.AddExit("W");
-
+            slicerAve.ExitList.Add(aptBuilding);
             rooms.Add(slicerAve);
 
 

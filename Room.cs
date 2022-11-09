@@ -101,7 +101,6 @@ namespace CSIFEngine
         public void AddExit(string exit)
         {
             this.Exits.Add(exit);
-            this.ExitList.Add(GetExit(exit));
         }
 
         public void AddThing(Thing thing)
@@ -111,19 +110,25 @@ namespace CSIFEngine
 
         public Exit GetExit(string dir)
         {
-            if (dir.ToLower() == "n" || dir.ToLower() == "north") { Exit x = this.N; return x; }
-            else if (dir.ToLower() == "s" || dir.ToLower() == "south") { Exit x = this.S; return x; }
-            else if (dir.ToLower() == "e" || dir.ToLower() == "east") { Exit x = this.E; return x; }
-            else if (dir.ToLower() == "w" || dir.ToLower() == "west") { Exit x = this.W; return x; }
-            else if (dir.ToLower() == "sw" || dir.ToLower() == "southwest") { Exit x = this.SW; return x; }
-            else if (dir.ToLower() == "se" || dir.ToLower() == "southeast") { Exit x = this.SE; return x; }
-            else if (dir.ToLower() == "nw" || dir.ToLower() == "northwest") { Exit x = this.NW; return x; }
-            else if (dir.ToLower() == "ne" || dir.ToLower() == "northeast") { Exit x = this.SE; return x; }
-            else if (dir.ToLower() == "u" || dir.ToLower() == "up") { Exit x = this.U; return x; }
-            else if (dir.ToLower() == "d" || dir.ToLower() == "down") { Exit x = this.D; return x; }
-            else { return null; }
 
-          
+  
+            Exit x = null;
+            if (ExitList != null)
+            {
+                foreach (Exit exit in this.ExitList)
+                {
+                    if (exit != null)
+                    {
+                        if (exit.Dir.ToLower() == dir.ToLower())
+                        {
+                            x = exit;
+                            break;
+                        }
+                    }
+
+                }
+            }
+            return x;
         }
 
     }
