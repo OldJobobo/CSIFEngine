@@ -1,2 +1,2 @@
 # CSIFEngine
-* # Interactive Fiction Engine *
+! # Interactive Fiction Engine !
