@@ -9,8 +9,8 @@ static void Main() {
     string Version = "0.1.00 Alpha";
     string codeName = "Syphon";
     
-    //string gameName = "Netrun";
-    string gameName = "Trade War 4040";
+    string gameName = "Netrun";
+    //string gameName = "Trade War 4040";
 
     Console.WriteLine("CSIFEngine V." + Version + "\nC# Interactive Fiction Engine <Codename: " + codeName + ">  \n");
     Console.WriteLine("Developed by Chopping Block Studios");
@@ -20,8 +20,8 @@ static void Main() {
      
     Console.WriteLine("\n\nLoading Game: " + gameName + "\n\n\n");
 
-    //NetrunGame.Start(roomsList);
-    TradeWar4040.Start(roomsList);
+    NetrunGame.Start(roomsList);
+   //TradeWar4040.Start(roomsList);
 }
 
 namespace CSIFEngine

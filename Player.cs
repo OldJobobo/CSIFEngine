@@ -130,57 +130,65 @@ namespace CSIFEngine
         public void Go(string Dir)
         {
             Room gotoRoom;
+            foreach (Exit exit in this.Location.ExitList)
+            {
+                if (exit.Dir.ToLower() == Dir)
+                {
+                    Move(exit);
+                    break;
+                }
+                else { Console.WriteLine("There is no exit by that name."); }
 
-            if (Dir == "n" || Dir == "north")
-            {
-                Move("north");
-            }
-            else if (Dir == "s" || Dir == "south")
-            {
-                Move("south");
-            }
-            else if (Dir == "w" || Dir == "west")
-            {
-                Move("west");
-            }
-            else if (Dir == "e" || Dir == "east")
-            {
-                Move("east");
-            }
-            else if (Dir == "nw" || Dir == "northwest")
-            {
-                Move("northwest");
-            }
-            else if (Dir == "ne" || Dir == "northeast")
-            {
-                Move("northeast");
-            }
-            else if (Dir == "sw" || Dir == "southwest")
-            {
-                Move("southwest");
-            }
-            else if (Dir == "se" || Dir == "southeast")
-            {
-                Move("southeast");
-            }
-            else if (Dir == "u" || Dir == "up")
-            {
-                Move("up");
-            }
-            else if (Dir == "d" || Dir == "down")
-            {
-                Move("down");
+
+                /*
+                else if (exit.Dir.ToLower() == "s" || exit.Dir.ToLower() == "south")
+                {
+                    Move("south");
+                }
+                else if (exit.Dir.ToLower() == "w" || exit.Dir.ToLower() == "west")
+                {
+                    Move("west");
+                }
+                else if (exit.Dir.ToLower() == "e" || exit.Dir.ToLower() == "east")
+                {
+                    Move("east");
+                }
+                else if (exit.Dir.ToLower() == "nw" || exit.Dir.ToLower() == "northwest")
+                {
+                    Move("northwest");
+                }
+                else if (exit.Dir.ToLower() == "ne" || exit.Dir.ToLower() == "northeast")
+                {
+                    Move("northeast");
+                }
+                else if (exit.Dir.ToLower() == "sw" || exit.Dir.ToLower() == "southwest")
+                {
+                    Move("southwest");
+                }
+                else if (exit.Dir.ToLower() == "se" || exit.Dir.ToLower() == "southeast")
+                {
+                    Move("southeast");
+                }
+                else if (exit.Dir.ToLower() == "u" || exit.Dir.ToLower() == "up")
+                {
+                    Move("up");
+                }
+                else if (exit.Dir.ToLower() == "d" || exit.Dir.ToLower() == "down")
+                {
+                    Move("down");
+                }
+                */
             }
         }
 
 
-        public void Move(string direction)
+        public void Move(Exit exit)
         {
             Room gotoRoom;
-            Exit exit = this.Location.GetExit(direction);
+            //Exit exit = this.Location.GetExit(direction);
 
-            if ( this.Location.CheckExit( direction.ToLower() ) )
-            {
+           // if ( this.Location.CheckExit( direction.ToLower() ) )
+            //{
                 if (!exit.Locked)
                 {
                     int goTo = exit.toRoomID;
@@ -191,7 +199,7 @@ namespace CSIFEngine
                             if (room.ID == goTo)
                             {
                                 gotoRoom = room;
-                                Console.WriteLine("You go to the " + direction + ".");
+                                Console.WriteLine("You go to the " + exit.Dir + ".");
                                 this.Location = null;
                                 this.Location = gotoRoom;
                                 break;
@@ -201,11 +209,11 @@ namespace CSIFEngine
                         Look("room");
                     }
 
-                }
+               }
                 else { Console.WriteLine("The door is locked."); }
 
-            }
-            else { Console.WriteLine("There is no exit to the " + direction.ToLower() + "."); }
+          //  }
+           //
         }
 
         public void Get(string get)
