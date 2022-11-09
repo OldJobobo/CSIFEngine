@@ -19,6 +19,9 @@ namespace CSIFEngine
 
         private List<Room> roomList;
 
+        public string roomExitsDisplay = "Exits: ";
+        public string roomInvDisplay = "Things: ";
+
         public Player(List<Room> rooms, Room loc)
         {
             roomList = rooms;
@@ -43,7 +46,7 @@ namespace CSIFEngine
                         {
                             Console.Write(" " + thing.RDesc);
                         }
-                        Console.Write("\n\nThings: ");
+                        Console.Write("\n\n" + roomInvDisplay);
                         foreach (Thing thing in Location.Things)
                         {
                             Console.Write(" [" + thing.Name + "] ");
@@ -52,7 +55,7 @@ namespace CSIFEngine
 
                     Console.Write("\n");
 
-                    Console.Write("Exits: ");
+                    Console.Write(roomExitsDisplay);
                     if (Location.Exits != null)
                     {
                         foreach (string exit in Location.Exits)

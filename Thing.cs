@@ -15,7 +15,7 @@ namespace CSIFEngine
         private string edesc; //The description displayed when this Item is equiped or wore with ('wear' or 'equip')
         private bool isFixed; //Is this fixed in place or movable.
         private bool wearable; //Is this a wearable item? 
-
+        private bool listener; //Should player commands be passed to this for parsing?
         
          
         public string Name { get { return name; } set { name = value; } }
@@ -25,13 +25,14 @@ namespace CSIFEngine
         public string EDesc { get { return edesc; } set { edesc = value; } }
         public bool Fixed { get { return isFixed; } set { isFixed = value; } }
         public bool Wearable { get { return wearable; } set { wearable = value; } } 
+        public bool Listener { get { return listener; } set { listener = value; } }
 
         public List<string> Actions = new List<string>();
 
 
-        public void Parse()
+        public void Parse(string[] words)
         {
-
+            string command = words[0];
         }
     }
 }

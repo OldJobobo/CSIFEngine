@@ -183,12 +183,9 @@ namespace CSIFEngine
                 {
                     if (item != null )
                     {
-                        foreach (string act in item.Actions)
+                        if (item.Listener)
                         {
-                            if (act == command.ToLower())
-                            {
-                                //item.Parse(command, arg1.ToLower());
-                            }
+                            item.Parse(words);
                         }
                     }
                 }
