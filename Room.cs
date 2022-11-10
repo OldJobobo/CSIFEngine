@@ -96,6 +96,10 @@ namespace CSIFEngine
                 if (D != null) { return true; } else { return false; }
             }
             else { return false; }
+
+
+
+
         }
 
         public void AddExit(string exit)

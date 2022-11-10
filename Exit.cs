@@ -8,7 +8,8 @@ namespace CSIFEngine
 {
     public class Exit : Thing
     {
-   
+
+        private string exitname;
         private string dir;
         private int toroomid;
         private int exitid;
@@ -19,6 +20,7 @@ namespace CSIFEngine
         private string cDesc;
 
 
+        public string exitName { get { return exitname; } set { exitname = value; } }
         public string Dir { get { return dir; } set { dir = value; } }
         public int toRoomID { get { return toroomid; } set { toroomid = value; } }
         public int ExitID { get { return exitid; } set { exitid = value; } }    

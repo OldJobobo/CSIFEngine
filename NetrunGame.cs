@@ -37,6 +37,7 @@ namespace CSIFEngine
                     key: "keycard"
                 );
 
+            aptDoor.exitName = "Hallway";
             aptDoor.aliases = new List<string> { "door", "aptdoor" };
             aptDoor.ODesc = "You hold the " + aptDoor.Key + " up to the small touchscreen to the left of the door and it slides open.";
             apartment.ExitList.Add(aptDoor);
