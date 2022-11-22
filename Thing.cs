@@ -9,10 +9,10 @@ namespace CSIFEngine
     public class Thing
     {
         private int id; //ID number for Thing
-        private string name; // Name
-        private string description;   //the look at description of Thing
-        private string rdesc; //The room description, inserted into the Description of the current location it is in.
-        private string edesc; //The description displayed when this Item is equiped or wore with ('wear' or 'equip')
+        private string? name; // Name
+        private string? description;   //the look at description of Thing
+        private string? rdesc; //The room description, inserted into the Description of the current location it is in.
+        private string? edesc; //The description displayed when this Item is equiped or wore with ('wear' or 'equip')
         private bool isFixed; //Is this fixed in place or movable.
         private bool wearable; //Is this a wearable item? 
         private bool listener; //Should player commands be passed to this for parsing?

@@ -44,17 +44,28 @@ namespace CSIFEngine
             //string arg1 = "null";
             //string arg2 = "null";
             //string arg3 = "null";
+            bool isTrig = false;
+
             if (words.Length == 1)
             {
-                if (command.ToLower() == "n" || command.ToLower() == "s" || command.ToLower() == "e" || command.ToLower() == "w" || 
-                    command.ToLower() == "nw" || command.ToLower() == "ne" || command.ToLower() == "sw" || command.ToLower() == "se")
+                foreach (Exit exit in player.Location.ExitList)
                 {
-                    words = new string[2] { "go" ,  command};
-                   
-                    command = words[0];
-
-                    
+                    if (exit.exitTrig != null)
+                    {
+                        if (command.ToLower() == exit.exitTrig.ToLower())
+                        {
+                            isTrig = true;
+                        }
+                    }
                 }
+                if (command.ToLower() == "n" || command.ToLower() == "s" || command.ToLower() == "e" || command.ToLower() == "w" ||
+                    command.ToLower() == "nw" || command.ToLower() == "ne" || command.ToLower() == "sw" || command.ToLower() == "se" || isTrig)
+                {
+                    words = new string[2] { "go", command };
+
+                    command = words[0];
+                }
+                
             }
 
             if (command.ToLower() == "look" || command.ToLower() == "l")

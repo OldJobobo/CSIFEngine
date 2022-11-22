@@ -58,9 +58,9 @@ namespace CSIFEngine
                     Console.Write(roomExitsDisplay);
                     if (Location.Exits != null)
                     {
-                        foreach (string exit in Location.Exits)
+                        foreach (Exit exit in Location.ExitList)
                         {
-                            Console.Write(" <" + exit + "> ");
+                            Console.Write(" " + exit.exitName + " ");
                         }
                     }
                     Console.Write("\n");
@@ -132,13 +132,17 @@ namespace CSIFEngine
             Room gotoRoom;
             foreach (Exit exit in this.Location.ExitList)
             {
-                if (exit.Dir.ToLower() == Dir)
+                if (exit.Dir.ToLower() == Dir.ToLower())
                 {
                     Move(exit);
                     break;
                 }
-                else { Console.WriteLine("There is no exit by that name."); }
-
+                else if (exit.exitTrig.ToLower() == Dir.ToLower())
+                {
+                    Move(exit);
+                    break;
+                }
+                
 
         
             }
@@ -159,7 +163,7 @@ namespace CSIFEngine
                             if (room.ID == goTo)
                             {
                                 gotoRoom = room;
-                                Console.WriteLine("You go to the " + exit.Dir + ".");
+                                Console.WriteLine(exit.EDesc);
                                 this.Location = null;
                                 this.Location = gotoRoom;
                                 break;
