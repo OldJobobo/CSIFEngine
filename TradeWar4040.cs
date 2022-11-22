@@ -17,12 +17,18 @@ namespace CSIFEngine
             homeSector.ID = 1;
 
             Exit sec3457to3305 = new Exit(1, "3305", "This starlane leads to sector 3305.", "N", 2, 2 );
+            sec3457to3305.exitName = "<3305>";
+            sec3457to3305.exitTrig = "3305";
+            homeSector.ExitList.Add(sec3457to3305);
 
+            rooms.Add(homeSector);
 
             Room sec3305 = new Room();
             sec3305.Name = "Sector 3305";
             sec3305.Description = "This is a small system with a blue star and 2 planetary bodies.";
             sec3305.ID = 2;
+
+            rooms.Add(sec3305);
 
             //Initialize Player and GameManager
             Player player = new Player(rooms, homeSector);  //Create the player, pass list of rooms and starting location

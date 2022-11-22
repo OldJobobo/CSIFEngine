@@ -55,6 +55,7 @@ namespace CSIFEngine
                         if (command.ToLower() == exit.exitTrig.ToLower())
                         {
                             isTrig = true;
+                            //Console.WriteLine("triggered");
                         }
                     }
                 }
