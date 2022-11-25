@@ -28,6 +28,11 @@ namespace CSIFEngine
             sec3305.Description = "This is a small system with a blue star and 2 planetary bodies.";
             sec3305.ID = 2;
 
+            Exit sec3305to3457 = new Exit(1, "3457", "This starlane leads to sector 3457.", "S", 2, 2);
+            sec3305to3457.exitName = "<3457>";
+            sec3305to3457.exitTrig = "3457";
+            homeSector.ExitList.Add(sec3305to3457);
+
             rooms.Add(sec3305);
 
             //Initialize Player and GameManager
