@@ -128,6 +128,11 @@ namespace CSIFEngine
                             x = exit;
                             break;
                         }
+                        else if (exit.exitTrig.ToLower() == dir.ToLower() )
+                        {
+                            x = exit;
+                            break;
+                        }
                     }
 
                 }

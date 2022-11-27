@@ -318,11 +318,13 @@ namespace CSIFEngine
             {
                 foreach (Thing inv in Inventory)
                 {
+                    Exit x = this.Location.GetExit(dir.ToLower());
+
                     if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
                        dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
-                       dir.ToLower() == "u" || dir.ToLower() == "d")
+                       dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower())
                     {
-                        Exit x = this.Location.GetExit(dir.ToLower());
+                        
                         int exitID = x.ExitID;
                         int roomID = x.toRoomID;
 
