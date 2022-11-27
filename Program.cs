@@ -9,10 +9,6 @@ static void Main() {
     string Version = "0.1.00 Alpha";
     string codeName = "Syphon";
 
-    
-    //
-    //string gameName = "Trade War 4040";
-
     Console.WriteLine("CSIFEngine V." + Version + "\nC# Interactive Fiction Engine <Codename: " + codeName + ">  \n");
     Console.WriteLine("Developed by Chopping Block Studios");
     Console.WriteLine("Lead Developer: J.S. Brown ( aka Old Jobobo )");
@@ -47,6 +43,7 @@ namespace CSIFEngine
 {
     static class Game
     {
+        // Switch to end gameloop if true.
         public static bool GameOver = false;
     }
 

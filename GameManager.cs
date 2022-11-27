@@ -22,9 +22,11 @@ namespace CSIFEngine
 
         public string[] Prompt()
         {
+            // Create the game Prompt
             Console.Write(">");
             string? commands = Console.ReadLine();
 
+            // Split the string of words into a string array
             string[] words;
 
             if (commands != null)
@@ -41,13 +43,13 @@ namespace CSIFEngine
         public void Parse(string[] words)
         {
             string command = words[0];
-            //string arg1 = "null";
-            //string arg2 = "null";
-            //string arg3 = "null";
+
             bool isTrig = false;
 
+            // Is this a signle word command?
             if (words.Length == 1)
             {
+                // Check if it is a custom name exitTrig
                 foreach (Exit exit in player.Location.ExitList)
                 {
                     if (exit.exitTrig != null)
@@ -58,10 +60,11 @@ namespace CSIFEngine
                             //Console.WriteLine("triggered");
                         }
                     }
-                }
+                }  // Now check direction exits or if isTrig was set true above.
                 if (command.ToLower() == "n" || command.ToLower() == "s" || command.ToLower() == "e" || command.ToLower() == "w" ||
                     command.ToLower() == "nw" || command.ToLower() == "ne" || command.ToLower() == "sw" || command.ToLower() == "se" || isTrig)
                 {
+                    // Add go the dir or exitTrig
                     words = new string[2] { "go", command };
 
                     command = words[0];
@@ -72,7 +75,7 @@ namespace CSIFEngine
             if (command.ToLower() == "look" || command.ToLower() == "l")
             {
                 if (words.Length > 1)
-                {
+                { 
                     player.Look(words[1].ToLower());
                     player.PlayerTurns++;
                 }
@@ -191,6 +194,8 @@ namespace CSIFEngine
             }
             else
             {
+                // Check if any items in the player inventory have the listener flag set true
+                // If they do then pass the commands to it for parsing  (not fully tested and/or implemented).
                 foreach (Thing item in player.Inventory)
                 {
                     if (item != null )

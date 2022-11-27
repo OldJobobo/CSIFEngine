@@ -322,7 +322,7 @@ namespace CSIFEngine
 
                     if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
                        dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
-                       dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower())
+                       dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower() )
                     {
                         
                         int exitID = x.ExitID;
