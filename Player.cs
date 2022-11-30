@@ -132,10 +132,13 @@ namespace CSIFEngine
             Room gotoRoom;
             foreach (Exit exit in this.Location.ExitList)
             {
-                if (exit.Dir.ToLower() == Dir.ToLower())
+                if (exit.Dir != null)
                 {
-                    Move(exit);
-                    break;
+                    if (exit.Dir.ToLower() == Dir.ToLower())
+                    {
+                        Move(exit);
+                        break;
+                    }
                 }
                 else if (exit.exitTrig.ToLower() == Dir.ToLower())
                 {

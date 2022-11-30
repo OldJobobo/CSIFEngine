@@ -29,7 +29,7 @@ namespace CSIFEngine
                     id: 1,
                     name: "Apartment Door",
                     desc: "An average looking metal apartment door. The same one you come in and out of every day.",
-                    direction: "N",
+                    //direction: "N",
                     roomID: 2,
                     exitID: 2,
                     lockable: true,
@@ -46,7 +46,7 @@ namespace CSIFEngine
             apartment.AddExit("N");
 
             //Batheroom Door in Apt
-            Exit bathDoor = new(4, "Bathroom Door", "The door to your apartment bathroom.", "e", 3, 3);
+            Exit bathDoor = new(4, "Bathroom Door", "The door to your apartment bathroom.", 3, 3);
             bathDoor.exitName = "<B>athroom";
             bathDoor.exitTrig = "B";
             bathDoor.EDesc = "You move into the Bathroom.";
@@ -94,7 +94,7 @@ namespace CSIFEngine
             hallway.ID = 2;
 
             //Hallway door to apartment
-            Exit aptDoor2 = new(2, "Apartment Door", "An average looking metal apartment door. The same one you come in and out of every day.", "S", 1, 1, true, true, "keycard");
+            Exit aptDoor2 = new(2, "Apartment Door", "An average looking metal apartment door. The same one you come in and out of every day.", 1, 1, true, true, "keycard");
             aptDoor2.exitName = "<A>partment 303";
             aptDoor2.exitTrig = "A";
             hallway.S = aptDoor2;
@@ -102,7 +102,7 @@ namespace CSIFEngine
             hallway.ExitList.Add(aptDoor2);
 
             //Hallway door to Elevator
-            Exit hallElevator = new(6, "Hallway Elevator", "    An aging elevator to the first floor lobby of the Building.", "W", 4, 5);
+            Exit hallElevator = new(6, "Hallway Elevator", "    An aging elevator to the first floor lobby of the Building.", 4, 5);
             hallElevator.exitName = "E<L>evator";
             hallElevator.exitTrig = "L";
 
@@ -122,7 +122,7 @@ namespace CSIFEngine
             bathroom.ID = 3;
 
             //Bathroom door back to apartment
-            Exit bathDoor2 = new(3, "Bathroom Door", "The back to the rest of your apartment.","W", 1, 4 );
+            Exit bathDoor2 = new(3, "Bathroom Door", "The back to the rest of your apartment.", 1, 4 );
             bathDoor2.Locked = false;
             bathDoor2.Lockable = false;
             bathDoor2.exitName = "<L>iving Room";
@@ -141,7 +141,7 @@ namespace CSIFEngine
             aptLobby.ID = 4;
 
             //Lobby door to Elevator
-            Exit lobbyElevator = new(5, "Lobby Elevator", "    An aging elevator to the upper floors of the Building.", "W", 2, 6);
+            Exit lobbyElevator = new(5, "Lobby Elevator", "    An aging elevator to the upper floors of the Building.", 2, 6);
             lobbyElevator.exitName = "E<L>evator";
             lobbyElevator.exitTrig = "L";
             aptLobby.W = lobbyElevator;
@@ -149,7 +149,7 @@ namespace CSIFEngine
             aptLobby.ExitList.Add(lobbyElevator);
 
 
-            Exit lobbyExit = new(4, "Exit to Slicer Ave", "     Aging but elegant and elaberatly designed is the building's entrance, which leads to Slicer Ave.", "E", 5, 1);
+            Exit lobbyExit = new(4, "Exit to Slicer Ave", "     Aging but elegant and elaberatly designed is the building's entrance, which leads to Slicer Ave.", 5, 1);
             lobbyExit.exitName = "Lobby E<X>it";
             lobbyExit.exitTrig = "X";
             aptLobby.E = lobbyExit;
@@ -164,7 +164,7 @@ namespace CSIFEngine
             slicerAve.ID = 5;
 
             //Slicer Ave door to Apartment Building Lobby
-            Exit aptBuilding = new(1, "Apartment Building", "     You see the front entrance to your apartment building.", "W", 4, 4 );
+            Exit aptBuilding = new(1, "Apartment Building", "     You see the front entrance to your apartment building.", 4, 4 );
             aptBuilding.exitName = "<T>uring Apartments";
             aptBuilding.exitTrig = "T";
             slicerAve.W = aptBuilding;

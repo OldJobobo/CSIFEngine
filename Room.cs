@@ -123,12 +123,16 @@ namespace CSIFEngine
                 {
                     if (exit != null)
                     {
-                        if (exit.Dir.ToLower() == dir.ToLower())
+
+                        if (exit.Dir != null)
                         {
-                            x = exit;
-                            break;
+                            if (exit.Dir.ToLower() == dir.ToLower())
+                            {
+                                x = exit;
+                                break;
+                            }
                         }
-                        else if (exit.exitTrig.ToLower() == dir.ToLower() )
+                        else if (exit.exitTrig.ToLower() == dir.ToLower())
                         {
                             x = exit;
                             break;

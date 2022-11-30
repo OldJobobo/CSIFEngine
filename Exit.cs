@@ -37,23 +37,23 @@ namespace CSIFEngine
 
         public List<string> aliases;
 
-        public Exit(int id, string name, string desc, string direction, int roomID, int exitID )
+        public Exit(int id, string name, string desc, int roomID, int exitID )
         {
             ID = id;
             Name = name;
             Description = desc; 
-            Dir = direction;
+            //Dir = direction;
             toRoomID = roomID;
             ExitID = exitID;
 
             aliases = new List<string>();
         }
-        public Exit(int id, string name, string desc, string direction, int roomID, int exitID, bool lockable, bool locked, string key)
+        public Exit(int id, string name, string desc, int roomID, int exitID, bool lockable, bool locked, string key)
         {
             ID = id;
             Name = name;
             Description = desc;
-            Dir = direction;
+            //Dir = direction;
             toRoomID = roomID;
             ExitID = exitID;
             Lockable = lockable; 
