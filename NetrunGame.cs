@@ -190,6 +190,6 @@ namespace CSIFEngine
                 gameManager.Parse(commands); //Parse the users commands
             }
         }
-
+         
     }
 }

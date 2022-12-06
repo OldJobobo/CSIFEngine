@@ -374,8 +374,9 @@ namespace CSIFEngine
                     container1.Open();
                     Console.WriteLine(container1.ODesc);
                 }
+
             }
-            //container.Open();
+           
         }
         public void Close(string container)
         {
@@ -387,7 +388,9 @@ namespace CSIFEngine
                     Container container1 = (Container)thing;
                     container1.Close();
                 }
+
             }
+
         }
 
         public void Equip(string item)
