@@ -95,18 +95,10 @@ namespace CSIFEngine
                                     Container container = (Container)thing;
                                    
                                     if (container != null)
-                                        if (container.isOpen)
-                                        {
-                                            if (container.Contents != null)
-                                            {
-                                                Console.Write("Contents: ");
-                                                foreach (Thing content in container.Contents)
-                                                {
-                                                    Console.Write(" [" + content.Name + "] ");
-                                                }
-                                                Console.Write("\n");
-                                            }
-                                        }
+                                    {
+                                        container.DisplayContents();
+                                    }
+                                        
                                 }
                             }
                         }  

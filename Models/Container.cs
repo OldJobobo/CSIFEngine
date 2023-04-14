@@ -51,5 +51,25 @@ namespace CSIFEngine
             isOpen = false;
         }
 
+        public void DisplayContents()
+        {
+            if (isOpen)
+            {
+                if (Contents != null)
+                {
+                    Console.Write("Contents: ");
+                    foreach (Thing content in Contents)
+                    {
+                        Console.Write(" [" + content.Name + "] ");
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("It's closed.");
+            }
+        }   
+
     }
 }
