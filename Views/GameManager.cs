@@ -46,6 +46,7 @@ namespace CSIFEngine
 
             bool isTrig = false;
 
+            // Check if the command is an exit trigger
             if (words.Length == 1)
             {
                 foreach (Exit exit in player.Location.ExitList)
@@ -56,6 +57,7 @@ namespace CSIFEngine
                     }
                 }
 
+                // If the command is an exit trigger, change the command to "go"
                 if (new string[] { "n", "s", "e", "w", "nw", "ne", "sw", "se" }.Contains(command) || isTrig)
                 {
                     words = new string[2] { "go", command };
@@ -63,15 +65,26 @@ namespace CSIFEngine
                 }
             }
 
+            // Begin parsing the command
             switch (command)
             {
                 case "look":
                 case "l":
-                    player.Look(words.Length > 1 ? words[1].ToLower() : "room");
+                case "examine":
+                case "inspect":
+                case "search":
+
+                    // If the command is "look" or "l", check if there is a second word. If there is,
+                    // use that as the target. If not, use "room" as the target.
+                    player.Look(words.Length > 1 ? words[1].ToLower() : "room"); 
                     player.PlayerTurns++;
                     break;
 
                 case "go":
+                case "move":
+                case "walk":
+                case "run":
+
                     if (words.Length > 1)
                     {
                         player.Go(words[1].ToLower());
@@ -95,6 +108,7 @@ namespace CSIFEngine
                     break;
 
                 case "drop":
+
                     if (words.Length > 1)
                     {
                         player.Drop(words[1].ToLower());
@@ -110,6 +124,7 @@ namespace CSIFEngine
                     break;
 
                 case "lock":
+                   
                     if (words.Length > 1)
                     {
                         player.Lock(words[1].ToLower());
@@ -126,6 +141,7 @@ namespace CSIFEngine
                     break;
 
                 case "open":
+
                     if (words.Length > 1)
                     {
                         player.Open(words[1].ToLower());
@@ -135,6 +151,7 @@ namespace CSIFEngine
 
                 case "wear":
                 case "equip":
+                 
                     if (words.Length > 1)
                     {
                         player.Equip(words[1].ToLower());
