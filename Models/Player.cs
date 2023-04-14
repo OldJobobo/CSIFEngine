@@ -97,7 +97,7 @@ namespace CSIFEngine
                                    
                                     if (container != null)
                                     {
-                                        container.DisplayContents();
+                                        DisplayContents(container);
                                     }
                                         
                                 }
