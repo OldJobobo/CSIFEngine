@@ -39,33 +39,7 @@ namespace CSIFEngine
 
                 if (lookAt == "room" || lookAt == "here")
                 {
-                    if (Location.Things != null)
-                    {
-                        Console.WriteLine(Location.Name + "\n");
-                        Console.Write(Location.Description);
-                        foreach (Thing thing in Location.Things)
-                        {
-                            Console.Write(" " + thing.RDesc);
-                        }
-                        Console.Write("\n\n" + roomInvDisplay);
-                        foreach (Thing thing in Location.Things)
-                        {
-                            Console.Write(" [" + thing.Name + "] ");
-                        }
-                    }
-
-                    Console.Write("\n");
-
-                    Console.Write(roomExitsDisplay);
-                    if (Location.Exits != null)
-                    {
-                        foreach (Exit exit in Location.ExitList)
-                        {
-                            Console.Write(" " + exit.exitName + " ");
-                        }
-                    }
-                    Console.Write("\n");
-
+                    DisplayRoom();
                 }
                 else
                 {
@@ -424,6 +398,37 @@ namespace CSIFEngine
                 Console.WriteLine("It's closed.");
             }
         }
+
+        public void DisplayRoom()
+        {
+            if (Location.Things != null)
+            {
+                Console.WriteLine(Location.Name + "\n");
+                Console.Write(Location.Description);
+                foreach (Thing thing in Location.Things)
+                {
+                    Console.Write(" " + thing.RDesc);
+                }
+                Console.Write("\n\n" + roomInvDisplay);
+                foreach (Thing thing in Location.Things)
+                {
+                    Console.Write(" [" + thing.Name + "] ");
+                }
+            }
+
+            Console.Write("\n");
+
+            Console.Write(roomExitsDisplay);
+            if (Location.Exits != null)
+            {
+                foreach (Exit exit in Location.ExitList)
+                {
+                    Console.Write(" " + exit.exitName + " ");
+                }
+            }
+            Console.Write("\n");
+        }
+
 
         public void Info()
         {
