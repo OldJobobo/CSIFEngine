@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -401,6 +402,26 @@ namespace CSIFEngine
                     else
                         Console.WriteLine("You can't seem to find a way to wear that.");
                 }
+            }
+        }
+
+        public void DisplayContents(Container container)
+        {
+            if (container.isOpen)
+            {
+                if (container.Contents != null)
+                {
+                    Console.Write("Contents: ");
+                    foreach (Thing content in container.Contents)
+                    {
+                        Console.Write(" [" + content.Name + "] ");
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("It's closed.");
             }
         }
 
