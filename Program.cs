@@ -1,4 +1,5 @@
 ﻿using CSIFEngine;
+
 using System.Collections.Generic;
 
 
@@ -39,14 +40,5 @@ static void Main() {
     }
 }
 
-namespace CSIFEngine
-{
-    static class Game
-    {
-        // Switch to end gameloop if true.
-        public static bool GameOver = false;
-    }
-
-}
 
 
