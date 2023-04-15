@@ -30,7 +30,7 @@ namespace CSIFEngine
         public List<string> Actions = new List<string>();
 
 
-        public void Parse(string[] words)
+        public virtual void Parse(string[] words)
         {
             string command = words[0];
         }

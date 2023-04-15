@@ -41,7 +41,7 @@ namespace CSIFEngine
             }
         }
 
-        public void Parse(string[] words)
+        public virtual void Parse(string[] words)
         {
             string command = words[0].ToLower();
 
@@ -160,6 +160,8 @@ namespace CSIFEngine
                     }
                     break;
 
+               
+
                 case "info":
                     player.Info();
                     break;
@@ -169,10 +171,20 @@ namespace CSIFEngine
                     break;
 
                 default:
+                    //Console.WriteLine("Debug: fired");
                     foreach (Thing item in player.Inventory)
                     {
                         if (item != null && item.Listener)
                         {
+                            //Console.WriteLine("Debug: Inv Listerners fired");
+                            item.Parse(words);
+                        }
+                    }
+                    foreach (Thing item in player.Location.Things)
+                    {
+                        if (item != null && item.Listener)
+                        {
+                            //Console.WriteLine("Debug: Loc Listerners fired");
                             item.Parse(words);
                         }
                     }

@@ -140,6 +140,15 @@ namespace CSIFEngine
                                    "    the lobby windows which looking out onto the street outside.";
             aptLobby.ID = 4;
 
+            NPC hacker = new NPC(1, "Hacker", "A mysterious hacker wearing a hood.", true, "The hacker says, 'I don't know anything about that.'");
+            hacker.AddDialogue("password", "The hacker says, 'The password for the secret server is 12345.'");
+            hacker.AddDialogue("mission", "The hacker says, 'Your mission is to infiltrate the secret server and retrieve valuable data.'");
+            hacker.AddDialogue("server", "The hacker says, 'The secret server is located in the Cybersecurity Lab.'");
+            hacker.RDesc = "You see a mysterious hacker here.";
+
+            
+            aptLobby.AddThing(hacker);
+
             //Lobby door to Elevator
             Exit lobbyElevator = new(5, "Lobby Elevator", "    An aging elevator to the upper floors of the Building.", 2, 6);
             lobbyElevator.exitName = "E<L>evator";
