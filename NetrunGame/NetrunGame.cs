@@ -22,8 +22,24 @@ namespace NetrunGame
             //Starting location Players Apartment
             Room apartment = new Room();
             apartment.Name = "Your Apartment";
-            apartment.Description = "            You are in a dingy apartment. Rain spatters the window which frames a view of the city, plastered with \n" +
-                                    "    neon signs and large shifting LED billboards.";
+            apartment.Description = "          You find yourself in a dimly lit, cramped apartment, the embodiment of urban decay. The \n" +
+                                    "damp, musty smell of old wallpaper mixed with the scent of lingering cigarette smoke hangs in the \n" +
+                                    "air. The rain beats a relentless rhythm against the window, a barrier between you and the sprawling\n" +
+                                    " metropolis outside. As you peer through the grimy glass, the cityscape reveals itself as a cacophony \n" +
+                                    "of neon signs and massive, ever-shifting LED billboards, their garish hues bleeding into one another. \n" +
+                                    "The oppressive hum of machinery and the distant wail of sirens provide a fitting soundtrack to this \n" +
+                                    "dystopian tableau.\n\n" +
+                                    "The apartment itself is a testament to neglect; clutter is strewn haphazardly across the worn, threadbare \n" +
+                                    "carpet. A sagging, stained mattress in one corner serves as a makeshift bed, the only concession to \n" +
+                                    "comfort in this dismal space. The peeling wallpaper, a faded relic from a bygone era, curls away from \n" +
+                                    "the damp plaster in defiance of gravity, revealing the cold, unfeeling concrete beneath.\n\n" +
+                                    "A single, flickering lightbulb casts sinister shadows across the cracked walls, its erratic dance \n" +
+                                    "reflecting the uncertainty and chaos that lies just beyond the apartment's door. The air feels thick, \n" +
+                                    "suffocating, laden with the weight of countless untold stories and forgotten lives. This dingy refuge \n" +
+                                    "is a microcosm of the city itself: a desperate, decaying haven for those struggling to survive in a world \n" +
+                                    "grown indifferent to their plight.\n";
+
+
             apartment.ID = 1;
 
             //Apartment Door Exit

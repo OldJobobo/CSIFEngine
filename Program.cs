@@ -9,6 +9,7 @@ static void Main() {
     string Version = "0.1.00 Alpha";
     string codeName = "Syphon";
 
+    Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine("CSIFEngine V." + Version + "\nC# Interactive Fiction Engine <Codename: " + codeName + ">  \n");
     Console.WriteLine("Developed by Chopping Block Studios");
     Console.WriteLine("Lead Developer: J.S. Brown ( aka Old Jobobo )");

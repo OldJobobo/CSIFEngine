@@ -52,8 +52,9 @@ namespace CSIFEngine
                         if (thing.Name.ToLower() == lookAt || thing.Name.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
                         {
                             inInv = true;
-
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(thing.Description + "\n");
+                            Console.ResetColor();
 
                         }
                     }
@@ -123,7 +124,9 @@ namespace CSIFEngine
         public void Move(Exit exit)
         {
             Room gotoRoom;
-      
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
                 if (!exit.Locked)
                 {
                     int goTo = exit.toRoomID;
@@ -147,11 +150,14 @@ namespace CSIFEngine
                }
                 else { Console.WriteLine("The door is locked."); }
 
-         
+            Console.ResetColor();
+            
         }
 
         public void Get(string get)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             foreach (Thing thing in Location.Things)
             {
                 if (get.Length >= 3)
@@ -173,10 +179,14 @@ namespace CSIFEngine
                 }
             }
 
+            Console.ResetColor();
+
         }
 
         public void Get(string get, string container)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             foreach (Thing thing in Location.Things)
             {
                 if (get.Length >= 3)
@@ -204,11 +214,15 @@ namespace CSIFEngine
                     }
                 }
             }
+
+            Console.ResetColor();
         }
 
 
         public void Drop(string drop)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             foreach (Thing thing in Inventory)
             {
                 if (drop.Length >= 3)
@@ -224,11 +238,14 @@ namespace CSIFEngine
                 
                
             }
+
+            Console.ResetColor();
         }
 
 
         public void ShowInv()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Equipped: ");
             foreach (Thing thing in Equipment)
             {
@@ -241,11 +258,13 @@ namespace CSIFEngine
                 Console.Write(" " + thing.Name);
             }
             Console.Write("\n");
+            Console.ResetColor();
         }
 
 
         public void Lock(string dir)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             if (Inventory.Count > 0)
             {
                 foreach (Thing inv in Inventory)
@@ -255,6 +274,7 @@ namespace CSIFEngine
                     if (inv.Name.ToLower() == x.Key.ToLower() || inv.Name.StartsWith(x.Key, StringComparison.CurrentCultureIgnoreCase))
                     {
                         x.Locked = true;
+                       
                         Console.WriteLine("You lock the door with the " + inv.Name.ToLower() + ".");
                         int exitID = x.ExitID;
                         int roomID = x.toRoomID;
@@ -279,12 +299,15 @@ namespace CSIFEngine
             }
             else { Console.WriteLine("You aren't carrying anything, let alone a key that might lock that."); }
 
+            Console.ResetColor();
         } //end Lock method
 
 
         public void Unlock(string dir)
         {
             bool hasKey = false;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             if (Inventory.Count > 0)
             {
@@ -331,6 +354,8 @@ namespace CSIFEngine
             {
                 Console.WriteLine("You do not seem to have a key for that.");
             }
+
+            Console.ResetColor();
         } //end Unlock method
 
 
@@ -338,13 +363,18 @@ namespace CSIFEngine
         {
             foreach (Thing thing in this.Location.Things)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 if (thing.Name.ToLower() == container)
                 {
+                   
                     Container container1 = (Container)thing;
                     container1.Open();
                     Console.WriteLine(container1.ODesc);
+                   
                 }
 
+                Console.ResetColor();
             }
            
         }
@@ -353,11 +383,13 @@ namespace CSIFEngine
 
             foreach (Thing thing in this.Location.Things)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 if (thing.Name.ToLower() == container)
                 {
                     Container container1 = (Container)thing;
                     container1.Close();
                 }
+                Console.ResetColor();
 
             }
 
@@ -367,6 +399,7 @@ namespace CSIFEngine
         {
             foreach (Thing thing in this.Inventory)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 if (thing.Name.ToLower() == item)
                 {
                     if (thing.Wearable)
@@ -379,11 +412,14 @@ namespace CSIFEngine
                     else
                         Console.WriteLine("You can't seem to find a way to wear that.");
                 }
+                Console.ResetColor();
             }
         }
 
         public void DisplayContents(Container container)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             if (container.isOpen)
             {
                 if (container.Contents != null)
@@ -400,6 +436,8 @@ namespace CSIFEngine
             {
                 Console.WriteLine("It's closed.");
             }
+
+            Console.ResetColor();
         }
 
         public void DisplayRoom()
@@ -418,7 +456,7 @@ namespace CSIFEngine
                 {
                     Console.Write(" [" + thing.Name + "] ");
                 }
-                Console.ResetColor();
+                
             }
 
             Console.Write("\n");
@@ -432,12 +470,15 @@ namespace CSIFEngine
                 }
             }
             Console.Write("\n");
+            Console.ResetColor();
         }
 
 
         public void Info()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Turns: " + this.PlayerTurns);    
+            Console.ResetColor();
         }
 
         public void AdjustPlayerTurns(object sender, PlayerTurnsEventArgs e)
