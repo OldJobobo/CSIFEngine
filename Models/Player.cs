@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using CSIFEngine.ViewModels;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -403,6 +404,7 @@ namespace CSIFEngine
         {
             if (Location.Things != null)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(Location.Name + "\n");
                 Console.Write(Location.Description);
                 foreach (Thing thing in Location.Things)
@@ -414,6 +416,7 @@ namespace CSIFEngine
                 {
                     Console.Write(" [" + thing.Name + "] ");
                 }
+                Console.ResetColor();
             }
 
             Console.Write("\n");
@@ -435,7 +438,10 @@ namespace CSIFEngine
             Console.WriteLine("Turns: " + this.PlayerTurns);    
         }
 
-
+        public void AdjustPlayerTurns(object sender, PlayerTurnsEventArgs e)
+        {
+            this.PlayerTurns += e.TurnsAdjustment;
+        }
 
     }   //end Class Player
 

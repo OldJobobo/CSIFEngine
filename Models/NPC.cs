@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSIFEngine.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace CSIFEngine
 {
     public class NPC : Thing
     {
+        public event EventHandler<PlayerTurnsEventArgs> PlayerTurnsAdjustment;
+
         private bool isFriendly;
         private Dictionary<string, string> dialogues;
         private string defaultDialogue;
@@ -45,6 +48,11 @@ namespace CSIFEngine
             }
         }
 
+        protected virtual void OnPlayerTurnsAdjustment(int turnsAdjustment)
+        {
+            PlayerTurnsAdjustment?.Invoke(this, new PlayerTurnsEventArgs(turnsAdjustment));
+        }
+
         public override void Parse(string[] words)
         {
            
@@ -66,10 +74,12 @@ namespace CSIFEngine
                     {
                         string keyword = words[2];
                         Console.WriteLine(GetResponse(keyword));
+                        OnPlayerTurnsAdjustment(1);
                     }
                     else
                     {
                         Console.WriteLine(DefaultDialogue);
+                        OnPlayerTurnsAdjustment(1);
                     }
                     break;
                 default:

@@ -146,8 +146,9 @@ namespace CSIFEngine
             hacker.AddDialogue("mission", "The hacker says, 'Your mission is to infiltrate the secret server and retrieve valuable data.'");
             hacker.AddDialogue("server", "The hacker says, 'The secret server is located in the Cybersecurity Lab.'");
             hacker.RDesc = "You see a mysterious hacker here.";
+      
 
-            
+
             aptLobby.AddThing(hacker);
 
             //Lobby door to Elevator
@@ -187,6 +188,8 @@ namespace CSIFEngine
             //Initialize Player and GameManager
             Player player = new Player(rooms, apartment);  //Create the player, pass list of rooms and starting location
             GameManager gameManager = new GameManager(rooms, player);  //Create the GameManager, pass the list of rooms and the player
+
+            hacker.PlayerTurnsAdjustment += player.AdjustPlayerTurns;
 
             //TODO: Code an example Intro Scene sequence.
 

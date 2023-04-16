@@ -22,6 +22,7 @@ namespace CSIFEngine
         {
             roomList = rooms;
             player = playerObj;
+
         }
 
         public string[] Prompt()
@@ -75,8 +76,11 @@ namespace CSIFEngine
                 case "look":
                 case "l":
                 case "examine":
+                case "ex":
                 case "inspect":
+                case "ins":
                 case "search":
+                case "sea":
 
                     // If the command is "look" or "l", check if there is a second word. If there is,
                     // use that as the target. If not, use "room" as the target.
