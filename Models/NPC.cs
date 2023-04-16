@@ -56,6 +56,8 @@ namespace CSIFEngine
             string command = words[0];
             string target = words[1].ToLower();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             if (target != Name.ToLower())
             {
                 Console.WriteLine("I don't see them here.");
@@ -82,6 +84,8 @@ namespace CSIFEngine
                     Console.WriteLine("Unknown command.");
                     break;
             }
+
+            Console.ResetColor();
         }
     }
 }

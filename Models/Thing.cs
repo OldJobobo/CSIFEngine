@@ -31,6 +31,12 @@ namespace CSIFEngine
 
         public List<string> Actions = new List<string>();
 
+        public Thing(int id, string name, string description)
+        {
+            this.id = id;
+            this.name = name;
+            this.description = description;
+        }
 
         public virtual void Parse(string[] words)
         {
