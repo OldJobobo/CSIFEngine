@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CSIFEngine.Views;
+using Newtonsoft.Json;
+using System.IO;
 
 
 namespace CSIFEngine
@@ -167,6 +169,13 @@ namespace CSIFEngine
                     player.Info();
                     break;
 
+
+                case "save":
+                    this.SaveGame("save.json");
+                    break;
+                case "load":
+                    this.LoadGame("save.json");
+                    break;
                 case "quit":
                     Game.GameOver = true;
                     break;
@@ -193,7 +202,35 @@ namespace CSIFEngine
             }
         }
 
-        
+        public void SaveGame(string filePath)
+        {
+            // Assuming you have properties or fields named Rooms, Things, and Player in GameManager
+            GameState gameState = new GameState(roomList, player);
 
+            // Serialize the gameState object to a JSON string
+            string gameStateJson = JsonConvert.SerializeObject(gameState, Formatting.Indented);
+
+            // Save the JSON string to a file
+            File.WriteAllText(filePath, gameStateJson);
+        }
+
+        public void LoadGame(string filePath)
+        {
+            try
+            {
+                string gameStateJson = File.ReadAllText(filePath);
+                GameState gameState = JsonConvert.DeserializeObject<GameState>(gameStateJson);
+
+                // Ensure the player and room list are set up correctly after deserialization
+                player = gameState.Player;
+                roomList = gameState.Rooms;
+
+                Console.WriteLine("Game loaded successfully!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error loading game: {e.Message}");
+            }
+        }
     }
 }

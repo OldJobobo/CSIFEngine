@@ -37,6 +37,10 @@ namespace CSIFEngine
 
         public List<string> aliases;
 
+        public Exit()
+        {
+        }
+
         public Exit(int id, string name, string desc, int roomID, int exitID )
         {
             ID = id;
