@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSIFEngine.Views
+namespace CSIFEngine
 {
     static class Game
     {

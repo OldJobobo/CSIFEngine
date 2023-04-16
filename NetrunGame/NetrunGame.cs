@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSIFEngine.Views;
+using CSIFEngine;
+
 
 /*
  * This is the main Demo Game for CSIFEngine.  
  */
-namespace CSIFEngine
+namespace NetrunGame
 {
+
     public static class NetrunGame
     {
         public static void Start(List<Room> rooms)
         {
-             
+
             //Initial Rooms and Things
 
             //Starting location Players Apartment
@@ -40,7 +42,7 @@ namespace CSIFEngine
 
             aptDoor.exitName = "<H>allway";
             aptDoor.exitTrig = "H";
-             aptDoor.aliases = new List<string> { "door", "aptdoor" };
+            aptDoor.aliases = new List<string> { "door", "aptdoor" };
             aptDoor.ODesc = "You hold the " + aptDoor.Key + " up to the small touchscreen to the left of the door and it slides open.";
             apartment.ExitList.Add(aptDoor);
             apartment.N = aptDoor;
@@ -90,7 +92,7 @@ namespace CSIFEngine
             //Hallway Room
             Room hallway = new Room();
             hallway.Name = "Apartment Building Hallway";
-            hallway.Description =    "          The hallway is long and closterphobic. The paint is cracked and pealing in places as the flourecent lights \n" +
+            hallway.Description = "          The hallway is long and closterphobic. The paint is cracked and pealing in places as the flourecent lights \n" +
                                      "     hum  overhead. A few wires are hung or loosly mounted along the walls.";
             hallway.ID = 2;
 
@@ -117,13 +119,13 @@ namespace CSIFEngine
 
             Room bathroom = new Room();
             bathroom.Name = "Apartment Bathroom";
-            bathroom.Description =   "          The cramped apartment bathroom, also known as the Relax-O-Clean 2087, is neither clean nor relaxing. The\n" +
+            bathroom.Description = "          The cramped apartment bathroom, also known as the Relax-O-Clean 2087, is neither clean nor relaxing. The\n" +
                                      "     size of a single standing shower stall. The waterproof smart mirror has commands to control the toilet, sink,\n" +
                                      "     and shower which slide out of the wall as needed..";
             bathroom.ID = 3;
 
             //Bathroom door back to apartment
-            Exit bathDoor2 = new(3, "Bathroom Door", "The back to the rest of your apartment.", 1, 4 );
+            Exit bathDoor2 = new(3, "Bathroom Door", "The back to the rest of your apartment.", 1, 4);
             bathDoor2.Locked = false;
             bathDoor2.Lockable = false;
             bathDoor2.exitName = "<L>iving Room";
@@ -146,7 +148,7 @@ namespace CSIFEngine
             hacker.AddDialogue("mission", "The hacker says, 'Your mission is to infiltrate the secret server and retrieve valuable data.'");
             hacker.AddDialogue("server", "The hacker says, 'The secret server is located in the Cybersecurity Lab.'");
             hacker.RDesc = "You see a mysterious hacker here.";
-      
+
 
 
             aptLobby.AddThing(hacker);
@@ -175,7 +177,7 @@ namespace CSIFEngine
             slicerAve.ID = 5;
 
             //Slicer Ave door to Apartment Building Lobby
-            Exit aptBuilding = new(1, "Apartment Building", "     You see the front entrance to your apartment building.", 4, 4 );
+            Exit aptBuilding = new(1, "Apartment Building", "     You see the front entrance to your apartment building.", 4, 4);
             aptBuilding.exitName = "<T>uring Apartments";
             aptBuilding.exitTrig = "T";
             slicerAve.W = aptBuilding;
@@ -203,6 +205,6 @@ namespace CSIFEngine
                 gameManager.Parse(commands); //Parse the users commands
             }
         }
-         
+
     }
 }
