@@ -284,34 +284,33 @@ namespace CSIFEngine
 
         public void Unlock(string dir)
         {
+            bool hasKey = false;
 
             if (Inventory.Count > 0)
             {
-                foreach (Thing inv in Inventory)
+                Exit x = this.Location.GetExit(dir.ToLower());
+
+                if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
+                   dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
+                   dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower())
                 {
-                    Exit x = this.Location.GetExit(dir.ToLower());
+                    int exitID = x.ExitID;
+                    int roomID = x.toRoomID;
 
-                    if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
-                       dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
-                       dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower() )
+                    foreach (Thing inv in Inventory)
                     {
-                        
-                        int exitID = x.ExitID;
-                        int roomID = x.toRoomID;
-
                         if (inv.Name.ToLower() == x.Key.ToLower())
                         {
+                            hasKey = true;
                             x.Locked = false;
                             Console.WriteLine(x.ODesc);
 
                             foreach (Room room in roomList)
                             {
-                                
                                 if (room.ID == roomID)
                                 {
                                     foreach (Exit exit in room.ExitList)
                                     {
-                                
                                         if (exit.ID == exitID)
                                         {
                                             exit.Locked = false;
@@ -320,17 +319,20 @@ namespace CSIFEngine
                                     }
                                 }
                             }
+                            break;
                         }
-                        else { Console.WriteLine("You do not seem to have a key for that."); }
-
                     }
-                    else { Console.WriteLine("I'm not sure which direction the " + dir + " is."); }
                 }
+                else { Console.WriteLine("I'm not sure which direction the " + dir + " is."); }
             }
             else { Console.WriteLine("You aren't carrying anything, let alone a key that might open that."); }
 
-
+            if (!hasKey && Inventory.Count > 0)
+            {
+                Console.WriteLine("You do not seem to have a key for that.");
+            }
         } //end Unlock method
+
 
         public void Open(string container)
         {

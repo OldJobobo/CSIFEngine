@@ -1,6 +1,5 @@
 ﻿using CSIFEngine;
-
-using System.Collections.Generic;
+using NetrunGame;
 
 
 Main();
@@ -29,7 +28,7 @@ static void Main() {
         {
             string gameName = "Netrun";
             Console.WriteLine("\n\nLoading Game: " + gameName + "\n\n\n");
-            NetrunGame.Start(roomsList);
+            World.Start(roomsList);
         }
         else if (words[0] == "2")
         {

@@ -12,7 +12,7 @@ using CSIFEngine;
 namespace NetrunGame
 {
 
-    public static class NetrunGame
+    public static class World
     {
         public static void Start(List<Room> rooms)
         {
