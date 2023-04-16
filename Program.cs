@@ -16,7 +16,20 @@ static void Main() {
 
     List<Room> roomsList = new List<Room>();
 
-    Console.Write("Which game? [1]Netrun [2]TradeWar4040 > ");
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.Write("Which game? [");
+    Console.ForegroundColor = ConsoleColor.Magenta;
+    Console.Write("1");
+    Console.ForegroundColor= ConsoleColor.Yellow;
+    Console.Write("]Netrun [");
+    Console.ForegroundColor = ConsoleColor.Magenta;
+    Console.Write("2");
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.Write("]TradeWar4040 > ");
+
+    
+    
+        
     string? commands = Console.ReadLine();
 
     string[] words;
