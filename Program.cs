@@ -6,7 +6,7 @@ Main();
 
 static void Main() {
 
-    string Version = "0.1.00 Alpha";
+    string Version = "0.1.5 Alpha";
     string codeName = "Syphon";
 
     Console.ForegroundColor = ConsoleColor.Green;
