@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSIFEngine.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,9 @@ namespace CSIFEngine
         private bool isFixed; //Is this fixed in place or movable.
         private bool wearable; //Is this a wearable item? 
         private bool listener; //Should player commands be passed to this for parsing?
-        
-         
+
+        public event EventHandler<PlayerTurnsEventArgs> PlayerTurnsAdjustment;
+
         public string Name { get { return name; } set { name = value; } }
         public string Description { get { return description; } set { description = value; } }
         public int ID { get { return id; } set { id = value; } }
@@ -34,5 +36,12 @@ namespace CSIFEngine
         {
             string command = words[0];
         }
+
+        protected virtual void OnPlayerTurnsAdjustment(int turnsAdjustment)
+        {
+            PlayerTurnsAdjustment?.Invoke(this, new PlayerTurnsEventArgs(turnsAdjustment));
+        }
+
+
     }
 }

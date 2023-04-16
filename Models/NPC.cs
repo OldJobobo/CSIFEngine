@@ -10,7 +10,7 @@ namespace CSIFEngine
 {
     public class NPC : Thing
     {
-        public event EventHandler<PlayerTurnsEventArgs> PlayerTurnsAdjustment;
+       
 
         private bool isFriendly;
         private Dictionary<string, string> dialogues;
@@ -48,11 +48,7 @@ namespace CSIFEngine
             }
         }
 
-        protected virtual void OnPlayerTurnsAdjustment(int turnsAdjustment)
-        {
-            PlayerTurnsAdjustment?.Invoke(this, new PlayerTurnsEventArgs(turnsAdjustment));
-        }
-
+     
         public override void Parse(string[] words)
         {
            
