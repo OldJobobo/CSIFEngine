@@ -184,20 +184,28 @@ namespace CSIFEngine
                     break;
 
                 default:
-                    //Console.WriteLine("Debug: fired");
+                    Console.WriteLine("Debug: fired");
                     foreach (Thing item in player.Inventory)
                     {
                         if (item != null && item.Listener)
                         {
-                            //Console.WriteLine("Debug: Inv Listerners fired");
+                            Console.WriteLine("Debug: Inv Listerners fired");
                             item.Parse(words);
+                        }
+                    }
+                    foreach (Thing thing in player.Equipment)
+                    {
+                        if (thing != null && thing.Listener)
+                        {
+                            Console.WriteLine("Debug: Equip Listerners fired");
+                            thing.Parse(words);
                         }
                     }
                     foreach (Thing item in player.Location.Things)
                     {
                         if (item != null && item.Listener)
                         {
-                            //Console.WriteLine("Debug: Loc Listerners fired");
+                            Console.WriteLine("Debug: Loc Listerners fired");
                             item.Parse(words);
                         }
                     }

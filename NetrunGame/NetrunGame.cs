@@ -17,6 +17,9 @@ namespace NetrunGame
         public static void Start(List<Room> rooms)
         {
 
+            Player player = new Player();  //Create the base player object
+
+
             //Initial Rooms and Things
 
             //Starting location Players Apartment
@@ -74,7 +77,7 @@ namespace NetrunGame
             apartment.ExitList.Add(bathDoor);
 
             //AR-Glasses Item
-            Thing arGlasses = new Thing();
+            Thing arGlasses = new ARGlasses(player);
             arGlasses.ID = 2;
             arGlasses.Name = "AR-Glasses";
             arGlasses.Description = "          A pair AR-Glasses, yours to be exact.  They look like a regular pair of glasses but with slightly\n" +
@@ -82,10 +85,11 @@ namespace NetrunGame
             arGlasses.RDesc = "You see your AR-Glasses here.";
             arGlasses.EDesc = "You slip on the AR-Glasses and the old familiar logos and updates insue and finally your AR vision is fully activated.";
             arGlasses.Wearable = true;
+            arGlasses.Listener = true;
             //apartment.AddThing(arGlasses);  //added to locker instead
 
             //Keycard Item
-            Thing keycard = new Thing();
+            Thing keycard = new Thing("","");
             keycard.Name = "Keycard";
             keycard.Description = "         You see a plastic keycard, slightly thick as if it contains a small amount of \n" +
                                   "    electronics within it's tiny form.";
@@ -94,7 +98,7 @@ namespace NetrunGame
             //apartment.AddThing(keycard);    //added to locker instead
 
             //Locker Container
-            Container locker = new Container(new List<Thing> { arGlasses, keycard }, false, false);
+            Container locker = new Container("", "", new List<Thing> { arGlasses, keycard }, false, false);
             locker.Name = "Locker";
             locker.Description = "A personal locker were you keep some of your things.";
             locker.ODesc = "You touch the screen on the locker and look into the camera, you here a click and the locker swings open.";
@@ -201,12 +205,14 @@ namespace NetrunGame
             slicerAve.ExitList.Add(aptBuilding);
             rooms.Add(slicerAve);
 
+            //Send the rooms and start location to the player object
+            player.roomList = rooms;
+            player.Location = apartment;
 
-
-            //Initialize Player and GameManager
-            Player player = new Player(rooms, apartment);  //Create the player, pass list of rooms and starting location
+            //Initialize GameManager
             GameManager gameManager = new GameManager(rooms, player);  //Create the GameManager, pass the list of rooms and the player
 
+            //Subscribe to Events
             hacker.PlayerTurnsAdjustment += player.AdjustPlayerTurns;
 
             //TODO: Code an example Intro Scene sequence.

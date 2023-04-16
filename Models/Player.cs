@@ -19,12 +19,12 @@ namespace CSIFEngine
         public List<Thing> Inventory;
         public List<Thing> Equipment;
 
-        private List<Room> roomList;
+        public List<Room> roomList;
 
         public string roomExitsDisplay = "Exits: ";
         public string roomInvDisplay = "Things: ";
 
-        public Player(List<Room> rooms, Room loc)
+        public Player(List<Room> rooms = null, Room loc = null)
         {
             roomList = rooms;
             Location = loc;

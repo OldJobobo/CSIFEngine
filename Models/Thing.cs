@@ -31,9 +31,8 @@ namespace CSIFEngine
 
         public List<string> Actions = new List<string>();
 
-        public Thing(int id, string name, string description)
+        public Thing(string name = null, string description = null)
         {
-            this.id = id;
             this.name = name;
             this.description = description;
         }
