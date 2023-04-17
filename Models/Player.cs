@@ -70,15 +70,15 @@ namespace CSIFEngine
                                 if (thing.GetType() == typeof(Container))
                                 {
                                     Container container = (Container)thing;
-                                   
+
                                     if (container != null)
                                     {
                                         DisplayContents(container);
                                     }
-                                        
+
                                 }
                             }
-                        }  
+                        }
                     }
                     else
                     {
@@ -114,9 +114,9 @@ namespace CSIFEngine
                     Move(exit);
                     break;
                 }
-                
 
-        
+
+
             }
         }
 
@@ -124,34 +124,34 @@ namespace CSIFEngine
         public void Move(Exit exit)
         {
             Room gotoRoom;
-            
+
             Console.ForegroundColor = ConsoleColor.Yellow;
 
-                if (!exit.Locked)
+            if (!exit.Locked)
+            {
+                int goTo = exit.toRoomID;
+                if (goTo != 0)
                 {
-                    int goTo = exit.toRoomID;
-                    if (goTo != 0)
+                    foreach (Room room in roomList)
                     {
-                        foreach (Room room in roomList)
+                        if (room.ID == goTo)
                         {
-                            if (room.ID == goTo)
-                            {
-                                gotoRoom = room;
-                                Console.WriteLine(exit.EDesc);
-                                this.Location = null;
-                                this.Location = gotoRoom;
-                                break;
-                            }
+                            gotoRoom = room;
+                            Console.WriteLine(exit.EDesc);
+                            this.Location = null;
+                            this.Location = gotoRoom;
+                            break;
                         }
-
-                        Look("room");
                     }
 
-               }
-                else { Console.WriteLine("The door is locked."); }
+                    Look("room");
+                }
+
+            }
+            else { Console.WriteLine("The door is locked."); }
 
             Console.ResetColor();
-            
+
         }
 
         public void Get(string get)
@@ -191,7 +191,7 @@ namespace CSIFEngine
             {
                 if (get.Length >= 3)
                 {
-                 
+
                     if (thing.Name.ToLower() == container || thing.Name.StartsWith(get, StringComparison.CurrentCultureIgnoreCase))
                     {
                         Container container1 = (Container)thing;
@@ -235,8 +235,8 @@ namespace CSIFEngine
                         break;
                     }
                 }
-                
-               
+
+
             }
 
             Console.ResetColor();
@@ -270,11 +270,11 @@ namespace CSIFEngine
                 foreach (Thing inv in Inventory)
                 {
                     Exit x = this.Location.GetExit(dir.ToLower());
-                    
+
                     if (inv.Name.ToLower() == x.Key.ToLower() || inv.Name.StartsWith(x.Key, StringComparison.CurrentCultureIgnoreCase))
                     {
                         x.Locked = true;
-                       
+
                         Console.WriteLine("You lock the door with the " + inv.Name.ToLower() + ".");
                         int exitID = x.ExitID;
                         int roomID = x.toRoomID;
@@ -367,17 +367,26 @@ namespace CSIFEngine
 
                 if (thing.Name.ToLower() == container)
                 {
-                   
-                    Container container1 = (Container)thing;
-                    container1.Open();
-                    Console.WriteLine(container1.ODesc);
-                   
+                    if (thing is Container container1)
+                    {
+                        // Your code here, e.g., interact with the container
+                        container1.Open();
+                        Console.WriteLine(container1.ODesc);
+                    }
                 }
-
-                Console.ResetColor();
+                else
+                {
+                    // Handle the case where the Thing is not a Container
+                    // or the Thing's name doesn't match the input
+                }
             }
-           
+
+            Console.ResetColor();
         }
+
+
+
+
         public void Close(string container)
         {
 

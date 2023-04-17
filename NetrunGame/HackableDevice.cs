@@ -19,6 +19,10 @@ namespace NetrunGame
             IsHacked = false;
         }
 
+        public HackableDevice(string name = null, string description = null, string hackMessage = null) : base(name, description)
+        {
+        }
+
         // Add any other properties, methods, or events specific to hackable devices here.
     }
 }

@@ -218,12 +218,36 @@ namespace CSIFEngine
             // Assuming you have properties or fields named Rooms, Things, and Player in GameManager
             GameState gameState = new GameState(roomList, player);
 
-            // Serialize the gameState object to a JSON string
-            string gameStateJson = JsonConvert.SerializeObject(gameState, Formatting.Indented);
+            // Create a JsonSerializerSettings object with the ReferenceLoopHandling set to Ignore
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
 
-            // Save the JSON string to a file
-            File.WriteAllText(filePath, gameStateJson);
+            // Serialize the gameState object to a JSON string using the JsonSerializerSettings
+            string gameStateJson = JsonConvert.SerializeObject(gameState, settings);
+
+            try
+            {
+                // Save the JSON string to a file
+                File.WriteAllText(filePath, gameStateJson);
+
+                // Display a confirmation message to the player
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Game saved successfully.");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                // Display an error message to the player
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("An error occurred while saving the game: " + ex.Message);
+                Console.ResetColor();
+            }
+
         }
+
 
         public void LoadGame(string filePath)
         {

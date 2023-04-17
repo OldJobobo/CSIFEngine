@@ -169,6 +169,23 @@ namespace NetrunGame
             hacker.AddDialogue("server", "The hacker says, 'The secret server is located in the Cybersecurity Lab.'");
             hacker.RDesc = "You see a mysterious hacker here.";
 
+            SecurityTerminal securityTerminal = new SecurityTerminal(
+                "Security Terminal",
+                "An old security terminal that controls access to various security features of the building.",
+                "You successfully hacked the terminal. All locked doors in the building are now unlocked, and you can access the security cameras."
+);
+
+            securityTerminal.HackActions.Add(() =>
+            {
+                // Unlock all locked doors in the building
+            });
+
+            securityTerminal.HackActions.Add(() =>
+            {
+                // Access security camera feeds
+            });
+
+            aptLobby.AddThing(securityTerminal);
 
 
             aptLobby.AddThing(hacker);
