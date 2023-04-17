@@ -312,38 +312,47 @@ namespace CSIFEngine
             if (Inventory.Count > 0)
             {
                 Exit x = this.Location.GetExit(dir.ToLower());
+                Console.WriteLine($"Exit Object: {x}"); // Debug output
 
-                if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
-                   dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
-                   dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower())
+                if (x != null) // Add a null check for the Exit object
                 {
-                    int exitID = x.ExitID;
-                    int roomID = x.toRoomID;
+                    Console.WriteLine($"Exit ID: {x.ExitID}");
+                    Console.WriteLine($"Exit toRoomID: {x.toRoomID}");
+                    Console.WriteLine($"Exit Key: {x.Key}");
 
-                    foreach (Thing inv in Inventory)
+                    if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
+                        dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
+                        dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower())
                     {
-                        if (inv.Name.ToLower() == x.Key.ToLower())
-                        {
-                            hasKey = true;
-                            x.Locked = false;
-                            Console.WriteLine(x.ODesc);
+                        int exitID = x.ExitID;
+                        int roomID = x.toRoomID;
 
-                            foreach (Room room in roomList)
+                        foreach (Thing inv in Inventory)
+                        {
+                            if (inv.Name.ToLower() == x.Key.ToLower())
                             {
-                                if (room.ID == roomID)
+                                hasKey = true;
+                                x.Locked = false;
+                                Console.WriteLine(x.ODesc);
+
+                                foreach (Room room in roomList)
                                 {
-                                    foreach (Exit exit in room.ExitList)
+                                    if (room.ID == roomID)
                                     {
-                                        if (exit.ID == exitID)
+                                        foreach (Exit exit in room.ExitList)
                                         {
-                                            exit.Locked = false;
-                                            break;
+                                            if (exit.ID == exitID)
+                                            {
+                                                exit.Locked = false;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
+                                break;
                             }
-                            break;
                         }
+
                     }
                 }
                 else { Console.WriteLine("I'm not sure which direction the " + dir + " is."); }
@@ -370,8 +379,11 @@ namespace CSIFEngine
                     if (thing is Container container1)
                     {
                         // Your code here, e.g., interact with the container
+                        Console.WriteLine($"IsLocked before opening: {container1.Locked}"); // Debug message
                         container1.Open();
                         Console.WriteLine(container1.ODesc);
+                        Console.WriteLine($"IsLocked after opening: {container1.Locked}"); // Debug message
+                        Console.WriteLine($"IsOpen after opening: {container1.isOpen}"); // Debug message
                     }
                 }
                 else

@@ -222,7 +222,9 @@ namespace CSIFEngine
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
+                TypeNameHandling = TypeNameHandling.Auto,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
 
             // Serialize the gameState object to a JSON string using the JsonSerializerSettings
@@ -254,7 +256,14 @@ namespace CSIFEngine
             try
             {
                 string gameStateJson = File.ReadAllText(filePath);
-                GameState gameState = JsonConvert.DeserializeObject<GameState>(gameStateJson);
+
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                };
+
+                GameState gameState = JsonConvert.DeserializeObject<GameState>(gameStateJson, settings);
 
                 // Ensure the player and room list are set up correctly after deserialization
                 player = gameState.Player;

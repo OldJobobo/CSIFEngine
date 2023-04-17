@@ -9,19 +9,39 @@ namespace NetrunGame
 {
     public class SecurityTerminal : HackableDevice
     {
-        public string HackMessage { get; set; }
-        public List<Action> HackActions { get; set; }
+        public List<HackableActionType> HackableActionTypes { get; set; } = new List<HackableActionType>();
 
-        public SecurityTerminal(string name, string description, string hackMessage)
-            : base(name, description, hackMessage)
+        public SecurityTerminal(string name, string description, int securityLevel)
+            : base(name, description, securityLevel)
         {
-            IsHacked = false;
-            HackMessage = hackMessage;
-            HackActions = new List<Action>();
         }
 
+        public void ExecuteHackableAction(HackableActionType actionType)
+        {
+            if (!IsHacked)
+            {
+                Console.WriteLine("You must hack the terminal first.");
+                return;
+            }
 
-        public void Hack(Player player)
+            switch (actionType)
+            {
+                case HackableActionType.UnlockDoors:
+                    // Unlock all locked doors in the building
+                    Console.WriteLine("All locked doors in the building are now unlocked.");
+                    break;
+                case HackableActionType.AccessCameras:
+                    // Access security camera feeds
+                    Console.WriteLine("You can now access the security camera feeds.");
+                    break;
+                default:
+                    Console.WriteLine("Unknown hackable action.");
+                    break;
+            }
+        }
+    
+
+    public void Hack(Player player)
         {
             if (IsHacked)
             {

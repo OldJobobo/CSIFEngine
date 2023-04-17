@@ -24,6 +24,10 @@ namespace CSIFEngine
 
         public List<Thing> Contents;
 
+        public Container() : base()
+        {
+        }
+
         public Container(string name, string description, List<Thing> contents, bool lockable, bool locked)
             : base(name, description)
         {

@@ -172,20 +172,14 @@ namespace NetrunGame
             SecurityTerminal securityTerminal = new SecurityTerminal(
                 "Security Terminal",
                 "An old security terminal that controls access to various security features of the building.",
-                "You successfully hacked the terminal. All locked doors in the building are now unlocked, and you can access the security cameras."
-);
+                1 // Security level
+            );
 
-            securityTerminal.HackActions.Add(() =>
-            {
-                // Unlock all locked doors in the building
-            });
-
-            securityTerminal.HackActions.Add(() =>
-            {
-                // Access security camera feeds
-            });
+            securityTerminal.HackableActionTypes.Add(HackableActionType.UnlockDoors);
+            securityTerminal.HackableActionTypes.Add(HackableActionType.AccessCameras);
 
             aptLobby.AddThing(securityTerminal);
+
 
 
             aptLobby.AddThing(hacker);
