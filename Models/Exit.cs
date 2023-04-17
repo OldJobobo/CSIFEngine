@@ -30,8 +30,8 @@ namespace CSIFEngine
         public bool Lockable { get { return lockable; } set { lockable = value; } }
         public bool Locked { get { return locked; } set { locked = value; } }   
         public string Key { get { return key; } set { key = value; } }
-        public string ODesc { get { return oDesc; } set { oDesc = value; } } //displayed when exit is unlocked.
-        public string CDesc { get { return cDesc; } set { cDesc = value; } } //displayed when exit is unlocked.
+        public string ODesc { get { return oDesc; } set { oDesc = value; } } //displayed when exit is unlocked or opened.   
+        public string CDesc { get { return cDesc; } set { cDesc = value; } } //displayed when exit is closed.
         public string EDesc { get { return eDesc; } set { eDesc = value; } } //display when entering the exit.
 
 

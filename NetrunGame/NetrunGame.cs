@@ -168,6 +168,9 @@ namespace NetrunGame
             hacker.AddDialogue("mission", "The hacker says, 'Your mission is to infiltrate the secret server and retrieve valuable data.'");
             hacker.AddDialogue("server", "The hacker says, 'The secret server is located in the Cybersecurity Lab.'");
             hacker.RDesc = "You see a mysterious hacker here.";
+            hacker.Fixed = true;
+            aptLobby.AddThing(hacker);
+
 
             SecurityTerminal securityTerminal = new SecurityTerminal(
                 "Security Terminal",
@@ -182,7 +185,7 @@ namespace NetrunGame
 
 
 
-            aptLobby.AddThing(hacker);
+           
 
             //Lobby door to Elevator
             Exit lobbyElevator = new(5, "Lobby Elevator", "    An aging elevator to the upper floors of the Building.", 2, 6);
