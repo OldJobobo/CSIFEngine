@@ -174,7 +174,7 @@ namespace NetrunGame
                 "An old security terminal that controls access to various security features of the building.",
                 1 // Security level
             );
-
+            securityTerminal.Fixed = true; // Can't be moved or picked up
             securityTerminal.HackableActionTypes.Add(HackableActionType.UnlockDoors);
             securityTerminal.HackableActionTypes.Add(HackableActionType.AccessCameras);
 

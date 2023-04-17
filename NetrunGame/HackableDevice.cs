@@ -7,11 +7,7 @@ using CSIFEngine;
 
 namespace NetrunGame
 {
-    public enum HackableActionType
-    {
-        UnlockDoors,
-        AccessCameras
-    }
+  
 
 
     public class HackableDevice : Thing
