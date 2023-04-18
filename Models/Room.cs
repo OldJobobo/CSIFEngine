@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Tweetinvi.Models;
 
 namespace CSIFEngine
 {
@@ -15,6 +16,8 @@ namespace CSIFEngine
         private int id;
         private string name;
         private string description;
+
+
          
         private Exit north;
         private Exit south;
@@ -123,7 +126,16 @@ namespace CSIFEngine
                 {
                     if (exit != null)
                     {
-                        if (exit.Dir.ToLower() == dir.ToLower())
+
+                        if (exit.Dir != null)
+                        {
+                            if (exit.Dir.ToLower() == dir.ToLower())
+                            {
+                                x = exit;
+                                break;
+                            }
+                        }
+                        else if (exit.exitTrig.ToLower() == dir.ToLower())
                         {
                             x = exit;
                             break;
@@ -134,6 +146,8 @@ namespace CSIFEngine
             }
             return x;
         }
+
+      
 
     }
 }

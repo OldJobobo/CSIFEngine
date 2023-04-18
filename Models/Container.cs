@@ -18,21 +18,26 @@ namespace CSIFEngine
         public bool Lockable { get { return lockable; } set { lockable = value; } }
         public bool Locked { get { return locked; } set { locked = value; } }
         public bool isOpen { get { return isopen; } set { isopen = value; } }
-        public string ODesc { get { return oDesc; } set { oDesc = value; } }   
+        public string ODesc { get { return oDesc; } set { oDesc = value; } }
         public string CDesc { get { return cDesc; } set { cDesc = value; } }
         public string Key { get { return key; } set { key = value; } }
 
-
         public List<Thing> Contents;
 
-        public Container(List<Thing> contents, bool lockable, bool locked)
+        public Container() : base()
+        {
+        }
+
+        public Container(string name, string description, List<Thing> contents, bool lockable, bool locked)
+            : base(name, description)
         {
             Lockable = lockable;
             Locked = locked;
-             
-            Contents = contents;    
+
+            Contents = contents;
         }
-        public Container(List<Thing> contents, bool lockable, bool locked, string key)
+        public Container(string name, string description, List<Thing> contents, bool lockable, bool locked, string key) 
+            : base(name, description)
         {
             Lockable = lockable;
             Locked = locked;
@@ -50,6 +55,5 @@ namespace CSIFEngine
         {
             isOpen = false;
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -17,12 +19,12 @@ namespace CSIFEngine
         public List<Thing> Inventory;
         public List<Thing> Equipment;
 
-        private List<Room> roomList;
+        public List<Room> roomList;
 
         public string roomExitsDisplay = "Exits: ";
         public string roomInvDisplay = "Things: ";
 
-        public Player(List<Room> rooms, Room loc)
+        public Player(List<Room> rooms = null, Room loc = null)
         {
             roomList = rooms;
             Location = loc;
@@ -38,33 +40,7 @@ namespace CSIFEngine
 
                 if (lookAt == "room" || lookAt == "here")
                 {
-                    if (Location.Things != null)
-                    {
-                        Console.WriteLine(Location.Name + "\n");
-                        Console.Write(Location.Description);
-                        foreach (Thing thing in Location.Things)
-                        {
-                            Console.Write(" " + thing.RDesc);
-                        }
-                        Console.Write("\n\n" + roomInvDisplay);
-                        foreach (Thing thing in Location.Things)
-                        {
-                            Console.Write(" [" + thing.Name + "] ");
-                        }
-                    }
-
-                    Console.Write("\n");
-
-                    Console.Write(roomExitsDisplay);
-                    if (Location.Exits != null)
-                    {
-                        foreach (Exit exit in Location.ExitList)
-                        {
-                            Console.Write(" " + exit.exitName + " ");
-                        }
-                    }
-                    Console.Write("\n");
-
+                    DisplayRoom();
                 }
                 else
                 {
@@ -76,8 +52,9 @@ namespace CSIFEngine
                         if (thing.Name.ToLower() == lookAt || thing.Name.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
                         {
                             inInv = true;
-
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(thing.Description + "\n");
+                            Console.ResetColor();
 
                         }
                     }
@@ -93,23 +70,15 @@ namespace CSIFEngine
                                 if (thing.GetType() == typeof(Container))
                                 {
                                     Container container = (Container)thing;
-                                   
+
                                     if (container != null)
-                                        if (container.isOpen)
-                                        {
-                                            if (container.Contents != null)
-                                            {
-                                                Console.Write("Contents: ");
-                                                foreach (Thing content in container.Contents)
-                                                {
-                                                    Console.Write(" [" + content.Name + "] ");
-                                                }
-                                                Console.Write("\n");
-                                            }
-                                        }
+                                    {
+                                        DisplayContents(container);
+                                    }
+
                                 }
                             }
-                        }  
+                        }
                     }
                     else
                     {
@@ -132,19 +101,22 @@ namespace CSIFEngine
             Room gotoRoom;
             foreach (Exit exit in this.Location.ExitList)
             {
-                if (exit.Dir.ToLower() == Dir.ToLower())
+                if (exit.Dir != null)
                 {
-                    Move(exit);
-                    break;
+                    if (exit.Dir.ToLower() == Dir.ToLower())
+                    {
+                        Move(exit);
+                        break;
+                    }
                 }
                 else if (exit.exitTrig.ToLower() == Dir.ToLower())
                 {
                     Move(exit);
                     break;
                 }
-                
 
-        
+
+
             }
         }
 
@@ -152,35 +124,40 @@ namespace CSIFEngine
         public void Move(Exit exit)
         {
             Room gotoRoom;
-      
-                if (!exit.Locked)
-                {
-                    int goTo = exit.toRoomID;
-                    if (goTo != 0)
-                    {
-                        foreach (Room room in roomList)
-                        {
-                            if (room.ID == goTo)
-                            {
-                                gotoRoom = room;
-                                Console.WriteLine(exit.EDesc);
-                                this.Location = null;
-                                this.Location = gotoRoom;
-                                break;
-                            }
-                        }
 
-                        Look("room");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            if (!exit.Locked)
+            {
+                int goTo = exit.toRoomID;
+                if (goTo != 0)
+                {
+                    foreach (Room room in roomList)
+                    {
+                        if (room.ID == goTo)
+                        {
+                            gotoRoom = room;
+                            Console.WriteLine(exit.EDesc);
+                            this.Location = null;
+                            this.Location = gotoRoom;
+                            break;
+                        }
                     }
 
-               }
-                else { Console.WriteLine("The door is locked."); }
+                    Look("room");
+                }
 
-         
+            }
+            else { Console.WriteLine("The door is locked."); }
+
+            Console.ResetColor();
+
         }
 
         public void Get(string get)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             foreach (Thing thing in Location.Things)
             {
                 if (get.Length >= 3)
@@ -202,15 +179,19 @@ namespace CSIFEngine
                 }
             }
 
+            Console.ResetColor();
+
         }
 
         public void Get(string get, string container)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             foreach (Thing thing in Location.Things)
             {
                 if (get.Length >= 3)
                 {
-                 
+
                     if (thing.Name.ToLower() == container || thing.Name.StartsWith(get, StringComparison.CurrentCultureIgnoreCase))
                     {
                         Container container1 = (Container)thing;
@@ -233,11 +214,15 @@ namespace CSIFEngine
                     }
                 }
             }
+
+            Console.ResetColor();
         }
 
 
         public void Drop(string drop)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             foreach (Thing thing in Inventory)
             {
                 if (drop.Length >= 3)
@@ -250,14 +235,17 @@ namespace CSIFEngine
                         break;
                     }
                 }
-                
-               
+
+
             }
+
+            Console.ResetColor();
         }
 
 
         public void ShowInv()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Equipped: ");
             foreach (Thing thing in Equipment)
             {
@@ -270,20 +258,23 @@ namespace CSIFEngine
                 Console.Write(" " + thing.Name);
             }
             Console.Write("\n");
+            Console.ResetColor();
         }
 
 
         public void Lock(string dir)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             if (Inventory.Count > 0)
             {
                 foreach (Thing inv in Inventory)
                 {
                     Exit x = this.Location.GetExit(dir.ToLower());
-                    
+
                     if (inv.Name.ToLower() == x.Key.ToLower() || inv.Name.StartsWith(x.Key, StringComparison.CurrentCultureIgnoreCase))
                     {
                         x.Locked = true;
+
                         Console.WriteLine("You lock the door with the " + inv.Name.ToLower() + ".");
                         int exitID = x.ExitID;
                         int roomID = x.toRoomID;
@@ -308,87 +299,128 @@ namespace CSIFEngine
             }
             else { Console.WriteLine("You aren't carrying anything, let alone a key that might lock that."); }
 
+            Console.ResetColor();
         } //end Lock method
 
 
         public void Unlock(string dir)
         {
+            bool hasKey = false;
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             if (Inventory.Count > 0)
             {
-                foreach (Thing inv in Inventory)
+                Exit x = this.Location.GetExit(dir.ToLower());
+                Console.WriteLine($"Exit Object: {x}"); // Debug output
+
+                if (x != null) // Add a null check for the Exit object
                 {
+                    Console.WriteLine($"Exit ID: {x.ExitID}");
+                    Console.WriteLine($"Exit toRoomID: {x.toRoomID}");
+                    Console.WriteLine($"Exit Key: {x.Key}");
+
                     if (dir.ToLower() == "n" || dir.ToLower() == "s" || dir.ToLower() == "e" || dir.ToLower() == "w" ||
-                       dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
-                       dir.ToLower() == "u" || dir.ToLower() == "d")
+                        dir.ToLower() == "nw" || dir.ToLower() == "ne" || dir.ToLower() == "sw" || dir.ToLower() == "se" ||
+                        dir.ToLower() == "u" || dir.ToLower() == "d" || dir.ToLower() == x.exitTrig.ToLower())
                     {
-                        Exit x = this.Location.GetExit(dir.ToLower());
                         int exitID = x.ExitID;
                         int roomID = x.toRoomID;
 
-                        if (inv.Name.ToLower() == x.Key.ToLower())
+                        foreach (Thing inv in Inventory)
                         {
-                            x.Locked = false;
-                            Console.WriteLine(x.ODesc);
-
-                            foreach (Room room in roomList)
+                            if (inv.Name.ToLower() == x.Key.ToLower())
                             {
-                                
-                                if (room.ID == roomID)
+                                hasKey = true;
+                                x.Locked = false;
+                                Console.WriteLine(x.ODesc);
+
+                                foreach (Room room in roomList)
                                 {
-                                    foreach (Exit exit in room.ExitList)
+                                    if (room.ID == roomID)
                                     {
-                                
-                                        if (exit.ID == exitID)
+                                        foreach (Exit exit in room.ExitList)
                                         {
-                                            exit.Locked = false;
-                                            break;
+                                            if (exit.ID == exitID)
+                                            {
+                                                exit.Locked = false;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
+                                break;
                             }
                         }
-                        else { Console.WriteLine("You do not seem to have a key for that."); }
 
                     }
-                    else { Console.WriteLine("I'm not sure which direction the " + dir + " is."); }
                 }
+                else { Console.WriteLine("I'm not sure which direction the " + dir + " is."); }
             }
             else { Console.WriteLine("You aren't carrying anything, let alone a key that might open that."); }
 
+            if (!hasKey && Inventory.Count > 0)
+            {
+                Console.WriteLine("You do not seem to have a key for that.");
+            }
 
+            Console.ResetColor();
         } //end Unlock method
+
 
         public void Open(string container)
         {
             foreach (Thing thing in this.Location.Things)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 if (thing.Name.ToLower() == container)
                 {
-                    Container container1 = (Container)thing;
-                    container1.Open();
-                    Console.WriteLine(container1.ODesc);
+                    if (thing is Container container1)
+                    {
+                        // Your code here, e.g., interact with the container
+                        Console.WriteLine($"IsLocked before opening: {container1.Locked}"); // Debug message
+                        container1.Open();
+                        Console.WriteLine(container1.ODesc);
+                        Console.WriteLine($"IsLocked after opening: {container1.Locked}"); // Debug message
+                        Console.WriteLine($"IsOpen after opening: {container1.isOpen}"); // Debug message
+                    }
+                }
+                else
+                {
+                    // Handle the case where the Thing is not a Container
+                    // or the Thing's name doesn't match the input
                 }
             }
-            //container.Open();
+
+            Console.ResetColor();
         }
+
+
+
+
         public void Close(string container)
         {
 
             foreach (Thing thing in this.Location.Things)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 if (thing.Name.ToLower() == container)
                 {
                     Container container1 = (Container)thing;
                     container1.Close();
                 }
+                Console.ResetColor();
+
             }
+
         }
 
         public void Equip(string item)
         {
             foreach (Thing thing in this.Inventory)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 if (thing.Name.ToLower() == item)
                 {
                     if (thing.Wearable)
@@ -401,15 +433,79 @@ namespace CSIFEngine
                     else
                         Console.WriteLine("You can't seem to find a way to wear that.");
                 }
+                Console.ResetColor();
             }
         }
 
-        public void Info()
+        public void DisplayContents(Container container)
         {
-            Console.WriteLine("Turns: " + this.PlayerTurns);    
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            if (container.isOpen)
+            {
+                if (container.Contents != null)
+                {
+                    Console.Write("Contents: ");
+                    foreach (Thing content in container.Contents)
+                    {
+                        Console.Write(" [" + content.Name + "] ");
+                    }
+                    Console.Write("\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("It's closed.");
+            }
+
+            Console.ResetColor();
+        }
+
+        public void DisplayRoom()
+        {
+            if (Location.Things != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(Location.Name + "\n");
+                Console.Write(Location.Description);
+                foreach (Thing thing in Location.Things)
+                {
+                    Console.Write(" " + thing.RDesc);
+                }
+                Console.Write("\n\n" + roomInvDisplay);
+                foreach (Thing thing in Location.Things)
+                {
+                    Console.Write(" [" + thing.Name + "] ");
+                }
+                
+            }
+
+            Console.Write("\n");
+
+            Console.Write(roomExitsDisplay);
+            if (Location.Exits != null)
+            {
+                foreach (Exit exit in Location.ExitList)
+                {
+                    Console.Write(" " + exit.exitName + " ");
+                }
+            }
+            Console.Write("\n");
+            Console.ResetColor();
         }
 
 
+        public void Info()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Turns: " + this.PlayerTurns);    
+            Console.ResetColor();
+        }
+
+        public void AdjustPlayerTurns(object sender, PlayerTurnsEventArgs e)
+        {
+            this.PlayerTurns += e.TurnsAdjustment;
+        }
 
     }   //end Class Player
 
