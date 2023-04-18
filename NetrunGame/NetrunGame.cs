@@ -136,7 +136,7 @@ namespace NetrunGame
             //Add Hallway to roomslist
             rooms.Add(hallway);
 
-
+            // Apartment bathroom
             Room bathroom = new Room();
             bathroom.Name = "Apartment Bathroom";
             bathroom.Description = "          The cramped apartment bathroom, also known as the Relax-O-Clean 2087, is neither clean nor relaxing. The\n" +
@@ -162,7 +162,7 @@ namespace NetrunGame
                                    "    and haze are illuminated by the eerie glow of magenta and yellow light from the neon and digital signs visible from\n" +
                                    "    the lobby windows which looking out onto the street outside.";
             aptLobby.ID = 4;
-
+            // hacker npc
             NPC hacker = new NPC(1, "Hacker", "A mysterious hacker wearing a hood.", true, "The hacker says, 'I don't know anything about that.'");
             hacker.AddDialogue("password", "The hacker says, 'The password for the secret server is 12345.'");
             hacker.AddDialogue("mission", "The hacker says, 'Your mission is to infiltrate the secret server and retrieve valuable data.'");
@@ -171,7 +171,7 @@ namespace NetrunGame
             hacker.Fixed = true;
             aptLobby.AddThing(hacker);
 
-
+            // Security Terminal
             SecurityTerminal securityTerminal = new SecurityTerminal(
                 "Security Terminal",
                 "An old security terminal that controls access to various security features of the building.",
@@ -195,7 +195,7 @@ namespace NetrunGame
             aptLobby.AddExit("W");
             aptLobby.ExitList.Add(lobbyElevator);
 
-
+            // Lobby door to Slicer Ave
             Exit lobbyExit = new(4, "Exit to Slicer Ave", "     Aging but elegant and elaberatly designed is the building's entrance, which leads to Slicer Ave.", 5, 1);
             lobbyExit.exitName = "Lobby E<X>it";
             lobbyExit.exitTrig = "X";
@@ -204,6 +204,7 @@ namespace NetrunGame
             aptLobby.ExitList.Add(lobbyExit);
             rooms.Add(aptLobby);
 
+            //Slicer Ave
             Room slicerAve = new Room();
             slicerAve.Name = "Slicer Ave";
             slicerAve.Description = "          A few random pedestrians wonder by but pretty deserted compared to other areas of the City.  Your\n" +
