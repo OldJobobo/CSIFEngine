@@ -22,7 +22,7 @@ game developers.
 ## Learn and Grow with CSIFEngine
 
 CSIFEngine is not only a powerful tool for creating interactive fiction games but also serves as an invaluable 
-earning resource for those looking to sharpen their C# programming skills. By utilizing the engine, developers 
+learning resource for those looking to sharpen their C# programming skills. By utilizing the engine, developers 
 can explore the intricacies of OOP concepts and gain a deeper understanding of the language, which can be applied 
 to a wide range of software development projects.
 
