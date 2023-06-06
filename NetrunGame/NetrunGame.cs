@@ -220,6 +220,35 @@ namespace NetrunGame
             slicerAve.ExitList.Add(aptBuilding);
             rooms.Add(slicerAve);
 
+            // Maintenance Room
+            Room maintenanceRoom = new Room();
+            maintenanceRoom.Name = "Maintenance Room";
+            maintenanceRoom.Description = "          The maintenance room is a cluttered space filled with an assortment of tools, spare parts, and equipment. The\n" +
+                                          "    walls are lined with shelves and cabinets, while the floor is home to a number of larger machines and devices.\n" +
+                                          "    The air is heavy with the scent of oil and metal, and the room is dimly lit by a single flickering bulb overhead.";
+            maintenanceRoom.ID = 6;
+
+            // Maintenance Room door back to Slicer Ave
+            Exit maintDoor = new(7, "Maintenance Room Door", "The door leading back to Slicer Ave.", 5, 8);
+            maintDoor.Locked = false;
+            maintDoor.Lockable = false;
+            maintDoor.exitName = "Back to <S>licer Ave";
+            maintDoor.exitTrig = "S";
+            maintenanceRoom.S = maintDoor;
+            maintenanceRoom.AddExit("S");
+            maintenanceRoom.ExitList.Add(maintDoor);
+
+            // Slicer Ave door to Maintenance Room
+            Exit maintRoomDoor = new(8, "Maintenance Room Door", "A door leading to the maintenance room.", 6, 7);
+            maintRoomDoor.exitName = "<M>aintenance Room";
+            maintRoomDoor.exitTrig = "M";
+            slicerAve.N = maintRoomDoor;
+            slicerAve.AddExit("N");
+            slicerAve.ExitList.Add(maintRoomDoor);
+
+            // Add Maintenance Room to roomslist
+            rooms.Add(maintenanceRoom);
+
             //Send the rooms and start location to the player object
             player.roomList = rooms;
             player.Location = apartment;
