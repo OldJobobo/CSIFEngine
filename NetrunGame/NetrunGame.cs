@@ -32,11 +32,11 @@ namespace NetrunGame
                                     "of neon signs and massive, ever-shifting LED billboards, their garish hues bleeding into one another. \n" +
                                     "The oppressive hum of machinery and the distant wail of sirens provide a fitting soundtrack to this \n" +
                                     "dystopian tableau.\n\n" +
-                                    "The apartment itself is a testament to neglect; clutter is strewn haphazardly across the worn, threadbare \n" +
+                                    "          The apartment itself is a testament to neglect; clutter is strewn haphazardly across the worn, threadbare \n" +
                                     "carpet. A sagging, stained mattress in one corner serves as a makeshift bed, the only concession to \n" +
                                     "comfort in this dismal space. The peeling wallpaper, a faded relic from a bygone era, curls away from \n" +
                                     "the damp plaster in defiance of gravity, revealing the cold, unfeeling concrete beneath.\n\n" +
-                                    "A single, flickering lightbulb casts sinister shadows across the cracked walls, its erratic dance \n" +
+                                    "          A single, flickering lightbulb casts sinister shadows across the cracked walls, its erratic dance \n" +
                                     "reflecting the uncertainty and chaos that lies just beyond the apartment's door. The air feels thick, \n" +
                                     "suffocating, laden with the weight of countless untold stories and forgotten lives. This dingy refuge \n" +
                                     "is a microcosm of the city itself: a desperate, decaying haven for those struggling to survive in a world \n" +
