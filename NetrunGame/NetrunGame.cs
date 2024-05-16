@@ -32,11 +32,11 @@ namespace NetrunGame
                                     "of neon signs and massive, ever-shifting LED billboards, their garish hues bleeding into one another. \n" +
                                     "The oppressive hum of machinery and the distant wail of sirens provide a fitting soundtrack to this \n" +
                                     "dystopian tableau.\n\n" +
-                                    "The apartment itself is a testament to neglect; clutter is strewn haphazardly across the worn, threadbare \n" +
+                                    "          The apartment itself is a testament to neglect; clutter is strewn haphazardly across the worn, threadbare \n" +
                                     "carpet. A sagging, stained mattress in one corner serves as a makeshift bed, the only concession to \n" +
                                     "comfort in this dismal space. The peeling wallpaper, a faded relic from a bygone era, curls away from \n" +
                                     "the damp plaster in defiance of gravity, revealing the cold, unfeeling concrete beneath.\n\n" +
-                                    "A single, flickering lightbulb casts sinister shadows across the cracked walls, its erratic dance \n" +
+                                    "          A single, flickering lightbulb casts sinister shadows across the cracked walls, its erratic dance \n" +
                                     "reflecting the uncertainty and chaos that lies just beyond the apartment's door. The air feels thick, \n" +
                                     "suffocating, laden with the weight of countless untold stories and forgotten lives. This dingy refuge \n" +
                                     "is a microcosm of the city itself: a desperate, decaying haven for those struggling to survive in a world \n" +
@@ -219,6 +219,35 @@ namespace NetrunGame
             slicerAve.AddExit("W");
             slicerAve.ExitList.Add(aptBuilding);
             rooms.Add(slicerAve);
+
+            // Maintenance Room
+            Room maintenanceRoom = new Room();
+            maintenanceRoom.Name = "Maintenance Room";
+            maintenanceRoom.Description = "          The maintenance room is a cluttered space filled with an assortment of tools, spare parts, and equipment. The\n" +
+                                          "    walls are lined with shelves and cabinets, while the floor is home to a number of larger machines and devices.\n" +
+                                          "    The air is heavy with the scent of oil and metal, and the room is dimly lit by a single flickering bulb overhead.";
+            maintenanceRoom.ID = 6;
+
+            // Maintenance Room door back to Slicer Ave
+            Exit maintDoor = new(7, "Maintenance Room Door", "The door leading back to Slicer Ave.", 5, 8);
+            maintDoor.Locked = false;
+            maintDoor.Lockable = false;
+            maintDoor.exitName = "Back to <S>licer Ave";
+            maintDoor.exitTrig = "S";
+            maintenanceRoom.S = maintDoor;
+            maintenanceRoom.AddExit("S");
+            maintenanceRoom.ExitList.Add(maintDoor);
+
+            // Slicer Ave door to Maintenance Room
+            Exit maintRoomDoor = new(8, "Maintenance Room Door", "A door leading to the maintenance room.", 6, 7);
+            maintRoomDoor.exitName = "<M>aintenance Room";
+            maintRoomDoor.exitTrig = "M";
+            slicerAve.N = maintRoomDoor;
+            slicerAve.AddExit("N");
+            slicerAve.ExitList.Add(maintRoomDoor);
+
+            // Add Maintenance Room to roomslist
+            rooms.Add(maintenanceRoom);
 
             //Send the rooms and start location to the player object
             player.roomList = rooms;

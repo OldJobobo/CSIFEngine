@@ -84,7 +84,7 @@ namespace CSIFEngine
                     {
                         foreach (Exit exit in this.Location.ExitList)
                         {
-                            if (exit.Name.ToLower() == lookAt || exit.Name.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
+                            if (exit.Name.ToLower() == lookAt || exit.exitTrig.StartsWith(lookAt, StringComparison.CurrentCultureIgnoreCase))
                             {
                                 Console.WriteLine(exit.Description + "\n");
                             }
